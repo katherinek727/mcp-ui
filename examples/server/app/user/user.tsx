@@ -151,7 +151,7 @@ export function User({ user }: { user: UserInfo }) {
             },
             {
               id: 3,
-              title: 'Update user authentication middleware',
+              title: 'Turn on Vision Mode in Playwright MCP',
               priority: 'High',
             },
           ].map((task) => (
