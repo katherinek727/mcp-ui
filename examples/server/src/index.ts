@@ -32,7 +32,7 @@ export class MyMCP extends McpAgent {
 
     this.server.tool(
       'get_tasks_status',
-      'Get a textual representation of the status of all tasks',
+      'The main way to get a textual representation of the status of all tasks',
       async () => {
         const todayData = {
           alice: { remaining: 12, toDo: 5, inProgress: 4, blocked: 3 },
@@ -144,7 +144,7 @@ export class MyMCP extends McpAgent {
 
     this.server.tool(
       'show_task_status',
-      'Displays a UI for the user to see the status of tasks',
+      'Displays a UI for the user to see the status of tasks. Use get_tasks_status unless asked to SHOW the status',
       async () => {
         const scheme =
           requestHost.includes('localhost') || requestHost.includes('127.0.0.1')
