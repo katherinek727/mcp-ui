@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/idosal/mcp-ui/compare/v2.2.0...v2.3.0) (2025-06-13)
+
+
+### Features
+
+* pass iframe props down ([#14](https://github.com/idosal/mcp-ui/issues/14)) ([112539d](https://github.com/idosal/mcp-ui/commit/112539d28640a96e8375a6b416f2ba559370b312))
+
 # [2.2.0](https://github.com/idosal/mcp-ui/compare/v2.1.0...v2.2.0) (2025-06-03)
 
 
