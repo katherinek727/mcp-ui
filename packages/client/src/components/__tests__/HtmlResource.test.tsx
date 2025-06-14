@@ -26,7 +26,7 @@ describe('HtmlResource component', () => {
     expect(iframe.srcdoc).toContain('<p>Hello Test</p>');
   });
 
-  it('renders iframe with src for ui:// URI with text', () => {
+  it('renders iframe with src for ui:// URI with text ', () => {
     const props: RenderHtmlResourceProps = {
       resource: {
         uri: 'ui://my-app',
