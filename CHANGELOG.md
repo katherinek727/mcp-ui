@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/idosal/mcp-ui/compare/v2.3.0...v2.3.1) (2025-06-14)
+
+
+### Bug Fixes
+
+* iframe handle ([#15](https://github.com/idosal/mcp-ui/issues/15)) ([66bd4fd](https://github.com/idosal/mcp-ui/commit/66bd4fd3d04f82e3e4557f064e701b68e1d8af11))
+
 # [2.3.0](https://github.com/idosal/mcp-ui/compare/v2.2.0...v2.3.0) (2025-06-13)
 
 
