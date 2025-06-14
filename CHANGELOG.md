@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/idosal/mcp-ui/compare/v2.3.1...v2.3.2) (2025-06-14)
+
+
+### Bug Fixes
+
+* trigger release ([aaca831](https://github.com/idosal/mcp-ui/commit/aaca83125c3f7825ccdebf0f04f8553e953c5249))
+
 ## [2.3.1](https://github.com/idosal/mcp-ui/compare/v2.3.0...v2.3.1) (2025-06-14)
 
 
