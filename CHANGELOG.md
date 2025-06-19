@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/idosal/mcp-ui/compare/v2.3.2...v2.3.3) (2025-06-19)
+
+
+### Bug Fixes
+
+* typescript types to be compatible with MCP SDK ([#10](https://github.com/idosal/mcp-ui/issues/10)) ([74365d7](https://github.com/idosal/mcp-ui/commit/74365d7ed6422beef6cd9ee0f5a97c847bd9827b))
+
 ## [2.3.2](https://github.com/idosal/mcp-ui/compare/v2.3.1...v2.3.2) (2025-06-14)
 
 
