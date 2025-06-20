@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/idosal/mcp-ui/compare/v2.3.3...v2.4.0) (2025-06-20)
+
+
+### Features
+
+* **client:** allow setting supportedContentTypes for HtmlResource ([#17](https://github.com/idosal/mcp-ui/issues/17)) ([e009ef1](https://github.com/idosal/mcp-ui/commit/e009ef10010134ba3d9893314cc4d8e1274f1f07))
+
 ## [2.3.3](https://github.com/idosal/mcp-ui/compare/v2.3.2...v2.3.3) (2025-06-19)
 
 
