@@ -47,7 +47,7 @@ The primary component for rendering MCP resources is `<ResourceRenderer />`. It 
 
 #### HTML (`text/html` and `text/uri-list`)
 
-Rendered using the `<HtmlResource />` component, which displays content inside an `<iframe>`. This is suitable for self-contained HTML or embedding external sites.
+Rendered using the `<HtmlResource />` component, which displays content inside an `<iframe>`. This is suitable for self-contained HTML or embedding external apps.
 
 *   **`mimeType`**:
     *   `text/html`: Renders inline HTML content.
@@ -59,7 +59,7 @@ Rendered using the `<HtmlResource />` component, which displays content inside a
     *   **`style`**: (Optional) Custom styles for the iframe.
     *   **`iframeProps`**: (Optional) Custom iframe props.
 
-#### Remote DOM (`application/vnd.mcp-ui.remote-dom`)
+#### Remote DOM (`application/vnd.mcp-ui.remote-dom+javascript`)
 
 Rendered using the `<RemoteDomResource />` component, which uses Shopify's [`remote-dom`](https://github.com/Shopify/remote-dom). The server responds with a script that describes the UI and events. On the host, the script is securely rendered in a sandboxed iframe, and the UI changes are communicated to the host in JSON, where they're rendered using the host's component library. This is more flexible than iframes and allows for UIs that match the host's look-and-feel.
 
@@ -164,8 +164,9 @@ Drop those URLs into any MCP-compatible host to see `mcp-ui` in action.
 - [X] Support Web Components
 - [X] Support Remote-DOM
 - [ ] Add component libraries (in progress)
-- [ ] Support additional client-side libraries and render engines (e.g., Vue, TUI, etc.)
-
+- [ ] Add declarative UI content type
+- [ ] Support generative UI?
+      
 ## 🤝 Contributing
 
 Contributions, ideas, and bug reports are welcome! See the [contribution guidelines](https://github.com/idosal/mcp-ui/blob/main/.github/CONTRIBUTING.md) to get started.
