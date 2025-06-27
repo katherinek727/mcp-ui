@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/idosal/mcp-ui/compare/v2.4.0...v2.5.0) (2025-06-27)
+
+
+### Features
+
+* add remote-dom content type ([#18](https://github.com/idosal/mcp-ui/issues/18)) ([5dacf37](https://github.com/idosal/mcp-ui/commit/5dacf37c22b5ee6ae795049a8d573fc073b8a1f5))
+
 # [2.4.0](https://github.com/idosal/mcp-ui/compare/v2.3.3...v2.4.0) (2025-06-20)
 
 
