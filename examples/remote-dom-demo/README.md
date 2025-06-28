@@ -2,6 +2,9 @@
 
 This application serves as a hands-on demonstration and testing ground for the `@mcp-ui/client` package, which utilizes the `remote-dom` pattern. It provides a playground for developers to understand and test the interaction between a "remote" UI script and a "host" component library.
 
+https://github.com/user-attachments/assets/cace78be-7ac5-47bc-bb41-d722e3e28304
+
+
 ## Key Concepts
 
 The demo is split into two main concepts:
