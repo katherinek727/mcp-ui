@@ -1,4 +1,4 @@
-import {RemoteReceiver} from '@remote-dom/core/receivers';
+import { RemoteReceiver } from '@remote-dom/core/receivers';
 
 export type UiActionType =
   | 'tool'

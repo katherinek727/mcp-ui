@@ -1,6 +1,7 @@
-// The main component to render remote content
-export { RemoteDomResource } from './components/RemoteDomResource';
+export { ResourceRenderer } from './components/ResourceRenderer';
 
+// @deprecated - will be removed in the next major version (3.0.0)
+export { HtmlResource } from './components/HtmlResource';
 
 // The types needed to create a custom component library
 export type {
