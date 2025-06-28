@@ -5,14 +5,15 @@ export { HtmlResource } from './components/HtmlResource';
 export { RemoteDomResource } from './components/RemoteDomResource';
 
 // The types needed to create a custom component library
+export type { RemoteElementConfiguration } from './types';
+
 export type {
   ComponentLibrary,
   ComponentLibraryElement,
-  RemoteElementConfiguration,
-} from './types';
+} from './remote-dom/types/componentLibrary';
 
 // Export the default libraries so hosts can register them if they choose
-export { basicComponentLibrary } from './component-libraries/basic';
+export { basicComponentLibrary } from './remote-dom/component-libraries/basic';
 
 // --- Remote Element Extensibility ---
 export {
@@ -21,7 +22,7 @@ export {
   remoteTextDefinition,
   remoteStackDefinition,
   remoteImageDefinition,
-} from './remote-elements';
+} from './remote-dom/remote-elements';
 
 export type {
   UiActionResult,
