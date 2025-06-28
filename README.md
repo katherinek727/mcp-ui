@@ -145,7 +145,7 @@ yarn add @mcp-ui/server @mcp-ui/client
 **Client example**
 * [ui-inspector](https://github.com/idosal/ui-inspector) - inspect local `mcp-ui`-enabled servers. 
 * [MCP-UI Chat](https://github.com/idosal/scira-mcp-ui-chat) - interactive chat built with the `mcp-ui` client. Check out the [hosted version](https://scira-mcp-chat-git-main-idosals-projects.vercel.app/)!
-* MCP-UI RemoteDOM Playground - local demo app to test RemoteDOM resources (intended for hosts)
+* MCP-UI RemoteDOM Playground (`examples/remote-dom-demo`) - local demo app to test RemoteDOM resources (intended for hosts)
 
 **Server example**
 Try out the hosted app -
