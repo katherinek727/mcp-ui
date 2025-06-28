@@ -2,9 +2,9 @@ import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   lang: 'en-US',
-  title: 'MCP UI',
+  title: 'MCP-UI',
   description: 'MCP-UI Client & Server SDK Documentation',
-  base: '/mcp-ui/', // For GitHub Pages deployment
+  base: '/',
 
   vite: {
     // Vite specific config for VitePress
