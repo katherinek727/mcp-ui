@@ -6,11 +6,13 @@
 </p>
 
 <p align="center">
-  <a href="#-what-is-mcp-ui">What's mcp-ui?</a> •
+  <a href="#-what's-`mcp-ui`?">What's mcp-ui?</a> •
+  <a href="#-core-concepts">Core Concepts</a> •
   <a href="#-installation">Installation</a> •
   <a href="#-quickstart">Quickstart</a> •
   <a href="#-core-concepts">Core Concepts</a> •
   <a href="#-examples">Examples</a> •
+  <a href="#-security">Security</a> •
   <a href="#-roadmap">Roadmap</a> •
   <a href="#-contributing">Contributing</a> •
   <a href="#-license">License</a>
@@ -155,6 +157,9 @@ Try out the hosted app -
 The app is deployed from `examples/server`.
 
 Drop those URLs into any MCP-compatible host to see `mcp-ui` in action.
+
+## 🔒 Security
+Host and user security is one of `mcp-ui`'s primary concerns. In all content types, the remote code is executed in a sandboxed iframe.
 
 
 ## 🛣️ Roadmap
