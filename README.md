@@ -52,7 +52,7 @@ interface HtmlResourceBlock {
   type: 'resource';
   resource: {
     uri: string;       // ui://component/id
-    mimeType: 'text/html' | 'text/uri-list'; // text/html for HTML content, text/uri-list for URL content
+    mimeType: 'text/html' | 'text/uri-list' | 'application/vnd.mcp-ui.remote-dom'; // text/html for HTML content, text/uri-list for URL content, application/vnd.mcp-ui.remote-dom for remote-dom content (Javascript)
     text?: string;      // Inline HTML or external URL
     blob?: string;      // Base64-encoded HTML or URL
   };
@@ -61,7 +61,7 @@ interface HtmlResourceBlock {
 
 * **`uri`**: Unique identifier for caching and routing
   * `ui://…` — UI resources (rendering method determined by mimeType)
-* **`mimeType`**: `text/html` for HTML content (iframe srcDoc), `text/uri-list` for URL content (iframe src)
+* **`mimeType`**: `text/html` for HTML content (iframe srcDoc), `text/uri-list` for URL content (iframe src), `application/vnd.mcp-ui.remote-dom` for remote-dom content (Javascript)
   * **MCP-UI requires a single URL**: While `text/uri-list` format supports multiple URLs, MCP-UI uses only the first valid URL and logs others
 * **`text` vs. `blob`**: Choose `text` for simple strings; use `blob` for larger or encoded content.
 

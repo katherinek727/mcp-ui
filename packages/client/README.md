@@ -52,7 +52,7 @@ interface HtmlResourceBlock {
   type: 'resource';
   resource: {
     uri: string;       // ui://component/id
-    mimeType: 'text/html' | 'text/uri-list'; // text/html for HTML content, text/uri-list for URL content
+    mimeType: 'text/html' | 'text/uri-list' | 'application/vnd.mcp-ui.remote-dom'; // text/html for HTML content, text/uri-list for URL content, application/vnd.mcp-ui.remote-dom for remote-dom content (Javascript)
     text?: string;      // Inline HTML or external URL
     blob?: string;      // Base64-encoded HTML or URL
   };
@@ -61,7 +61,7 @@ interface HtmlResourceBlock {
 
 * **`uri`**: Unique identifier for caching and routing
   * `ui://…` — UI resources (rendering method determined by mimeType)
-* **`mimeType`**: `text/html` for HTML content (iframe srcDoc), `text/uri-list` for URL content (iframe src)
+* **`mimeType`**: `text/html` for HTML content (iframe srcDoc), `text/uri-list` for URL content (iframe src), `application/vnd.mcp-ui.remote-dom` for remote-dom content (Javascript)
   * **MCP-UI requires a single URL**: While `text/uri-list` format supports multiple URLs, MCP-UI uses only the first valid URL and logs others
 * **`text` vs. `blob`**: Choose `text` for simple strings; use `blob` for larger or encoded content.
 
@@ -91,7 +91,7 @@ It accepts the following props:
 
 Rendered using the `<HtmlResource />` component, which displays content inside an `<iframe>`. This is suitable for self-contained HTML or embedding external apps.
 
-*   **`mimeType`**:
+**`mimeType`**:
     *   `text/html`: Renders inline HTML content.
     *   `text/uri-list`: Renders an external URL. MCP-UI uses the first valid URL.
 
@@ -99,7 +99,7 @@ Rendered using the `<HtmlResource />` component, which displays content inside a
 
 Rendered using the `<RemoteDomResource />` component, which uses Shopify's [`remote-dom`](https://github.com/Shopify/remote-dom). The server responds with a script that describes the UI and events. On the host, the script is securely rendered in a sandboxed iframe, and the UI changes are communicated to the host in JSON, where they're rendered using the host's component library. This is more flexible than iframes and allows for UIs that match the host's look-and-feel.
 
-* **`mimeType`**: `application/vnd.mcp-ui.remote-dom; flavor={react | webcomponents}`
+**`mimeType`**: `application/vnd.mcp-ui.remote-dom; flavor={react | webcomponents}`
 
 ### UI Action
 
