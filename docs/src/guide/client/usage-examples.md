@@ -4,10 +4,10 @@ Here's how to use the `<ResourceRenderer />` component from `@mcp-ui/client`.
 
 ## Installation
 
-Make sure you have `@mcp-ui/client` and its peer dependencies installed in your React project:
+Make sure you have `@mcp-ui/client` and its peer dependencies installed in your project:
 
 ```bash
-pnpm add @mcp-ui/client react @modelcontextprotocol/sdk
+npm i @mcp-ui/client
 ```
 
 ## Rendering HTML Resources
@@ -96,7 +96,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>MCP UI Client Demo</h1>
+      <h1>MCP-UI Client Demo</h1>
       <button onClick={() => loadResource('direct')}>
         Load Direct HTML (Text)
       </button>

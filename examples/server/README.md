@@ -9,7 +9,6 @@
   <a href="#-what-is-mcp-ui">What's mcp-ui?</a> •
   <a href="#-installation">Installation</a> •
   <a href="#-quickstart">Quickstart</a> •
-  <a href="#-core-concepts">Core Concepts</a> •
   <a href="#-examples">Examples</a> •
   <a href="#-roadmap">Roadmap</a> •
   <a href="#-contributing">Contributing</a> •

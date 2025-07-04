@@ -4,10 +4,10 @@ This page provides practical examples for using the `@mcp-ui/server` package.
 
 ## Basic Setup
 
-First, ensure you have `@mcp-ui/server` available in your project. If you're working outside this monorepo, you would typically install them:
+First, ensure you have `@mcp-ui/server` available in your project:
 
 ```bash
-pnpm add @mcp-ui/server
+npm i @mcp-ui/server
 ```
 
 ## Basic Usage

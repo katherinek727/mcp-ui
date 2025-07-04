@@ -129,8 +129,7 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/idosal/mcp-ui' },
-      { icon: 'npm', link: 'https://www.npmjs.com/package/@mcp-ui/client' },
-      { icon: 'discord', link: 'https://discord.gg/mcp-ui' }, // Update with actual Discord link
+      { icon: 'npm', link: 'https://www.npmjs.com/package/@mcp-ui/server' }
     ],
 
     footer: {

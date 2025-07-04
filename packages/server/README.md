@@ -10,11 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="#-what's-`mcp-ui`?">What's mcp-ui?</a> •
+  <a href="#-whats-mcp-ui">What's mcp-ui?</a> •
   <a href="#-core-concepts">Core Concepts</a> •
   <a href="#-installation">Installation</a> •
   <a href="#-quickstart">Quickstart</a> •
-  <a href="#-core-concepts">Core Concepts</a> •
   <a href="#-examples">Examples</a> •
   <a href="#-security">Security</a> •
   <a href="#-roadmap">Roadmap</a> •

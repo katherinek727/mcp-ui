@@ -176,7 +176,7 @@ For MCP servers, ensure you have `@mcp-ui/server` available in your Node.js proj
 For MCP clients, ensure `@mcp-ui/client` and its peer dependencies (`react` and potentially `@modelcontextprotocol/sdk`) are installed in your React project.
 
 ```bash
-pnpm add @mcp-ui/client react @modelcontextprotocol/sdk
+npm i @mcp-ui/client
 ```
 
 ## Key Components

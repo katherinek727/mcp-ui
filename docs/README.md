@@ -74,7 +74,7 @@ docs/
 - Clean, organized sidebar with collapsible sections
 - Breadcrumb navigation
 - "Edit on GitHub" links
-- Social media links (GitHub, npm, Discord)
+- Social media links (GitHub, npm)
 
 ### Content
 - Professional typography with proper hierarchy
