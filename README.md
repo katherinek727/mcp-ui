@@ -42,7 +42,32 @@ Together, they let you define reusable UI snippets on the server side, seamlessl
 
 ## ✨ Core Concepts
 
-The primary component for rendering MCP resources is `<ResourceRenderer />`. It automatically detects the resource type and renders the appropriate component.
+In essence, by using `mcp-ui` SDKs, servers and hosts can agree on contracts that enable them to create and render interactive UI snippets (as a path to a standardized UI approach in MCP).
+
+### HTML Resource Block
+The primary payload returned from the server to the client is the `HtmlResourceBlock`:
+
+```ts
+interface HtmlResourceBlock {
+  type: 'resource';
+  resource: {
+    uri: string;       // ui://component/id
+    mimeType: 'text/html' | 'text/uri-list'; // text/html for HTML content, text/uri-list for URL content
+    text?: string;      // Inline HTML or external URL
+    blob?: string;      // Base64-encoded HTML or URL
+  };
+}
+```
+
+* **`uri`**: Unique identifier for caching and routing
+  * `ui://…` — UI resources (rendering method determined by mimeType)
+* **`mimeType`**: `text/html` for HTML content (iframe srcDoc), `text/uri-list` for URL content (iframe src)
+  * **MCP-UI requires a single URL**: While `text/uri-list` format supports multiple URLs, MCP-UI uses only the first valid URL and logs others
+* **`text` vs. `blob`**: Choose `text` for simple strings; use `blob` for larger or encoded content.
+
+### Resource Renderer
+
+The HTML Resource Block is rendered in the `<ResourceRenderer />` component. It automatically detects the resource type and renders the appropriate component.
 
 It accepts the following props:
 - **`resource`**: The resource object from an MCP response. Should include `uri`, `mimeType`, and content (`text`, `blob`, or `content`)
