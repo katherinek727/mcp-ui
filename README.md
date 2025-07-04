@@ -1,6 +1,10 @@
 ## 📦 Model Context Protocol UI SDK
 
 <p align="center">
+  <img width="300" alt="image" src="https://github.com/user-attachments/assets/65b9698f-990f-4846-9b2d-88de91d53d4d" />
+</p>
+
+<p align="center">
   <a href="https://www.npmjs.com/package/@mcp-ui/server"><img src="https://img.shields.io/npm/v/@mcp-ui/server?label=server&color=green" alt="Server Version"></a>
   <a href="https://www.npmjs.com/package/@mcp-ui/client"><img src="https://img.shields.io/npm/v/@mcp-ui/client?label=client&color=blue" alt="Client Version"></a>
 </p>
@@ -24,7 +28,9 @@
 
 > *This project is an experimental community playground for MCP UI ideas. Expect rapid iteration and enhancements!*
 
-<video src="https://github.com/user-attachments/assets/51f7c712-8133-4d7c-86d3-fdca550b9767"></video>
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/7180c822-2dd9-4f38-9d3e-b67679509483"></video>
+</p>
 
 ## 💡 What's `mcp-ui`?
 
