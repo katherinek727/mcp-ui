@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/idosal/mcp-ui/compare/v2.5.1...v3.0.0) (2025-07-04)
+
+
+### Features
+
+* switch to ResourceRenderer ([#21](https://github.com/idosal/mcp-ui/issues/21)) ([6fe3166](https://github.com/idosal/mcp-ui/commit/6fe316682675e27db914d60696754677e3783448))
+
+
+### BREAKING CHANGES
+
+* removed deprecated client API
+
 ## [2.5.1](https://github.com/idosal/mcp-ui/compare/v2.5.0...v2.5.1) (2025-06-28)
 
 
