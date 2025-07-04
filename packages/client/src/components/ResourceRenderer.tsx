@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Resource } from '@modelcontextprotocol/sdk/types.js';
 import { ResourceContentType } from '../types';
-import { ComponentLibrary } from '../remote-dom/types/componentLibrary';
 import { HtmlResource, RenderHtmlResourceProps } from './HtmlResource';
 import { RemoteDomResource, RemoteDomResourceProps } from './RemoteDomResource';
 import { basicComponentLibrary } from '../remote-dom/component-libraries/basic';
@@ -11,7 +10,6 @@ type ResourceRendererProps = Omit<
   'resource'
 > & {
   resource: Partial<Resource>;
-  library?: ComponentLibrary;
   supportedContentTypes?: ResourceContentType[];
 };
 
@@ -41,6 +39,7 @@ export const ResourceRenderer: React.FC<ResourceRendererProps> = (props) => {
     iframeProps,
     supportedContentTypes,
     library,
+    remoteElements,
   } = props;
   const contentType = getContentType(resource);
 
@@ -71,6 +70,7 @@ export const ResourceRenderer: React.FC<ResourceRendererProps> = (props) => {
           resource={resource}
           onUiAction={onUiAction}
           library={library || basicComponentLibrary}
+          remoteElements={remoteElements}
         />
       );
     default:
