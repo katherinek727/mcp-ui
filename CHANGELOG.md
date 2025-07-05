@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/idosal/mcp-ui/compare/v4.0.0...v4.1.0) (2025-07-05)
+
+
+### Features
+
+* separate html and remote-dom props ([#24](https://github.com/idosal/mcp-ui/issues/24)) ([a7f0529](https://github.com/idosal/mcp-ui/commit/a7f05299dc9cc40184f9ab25c5b648ee7077be64))
+
 # [4.0.0](https://github.com/idosal/mcp-ui/compare/v3.0.0...v4.0.0) (2025-07-05)
 
 
