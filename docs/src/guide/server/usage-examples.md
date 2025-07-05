@@ -102,6 +102,37 @@ console.log(
 }
 */
 
+// Example 5: Remote DOM script, text delivery
+const remoteDomScript = `
+  const button = document.createElement('ui-button');
+  button.setAttribute('label', 'Click me for a tool call!');
+  button.addEventListener('press', () => {
+    window.parent.postMessage({ type: 'tool', payload: { toolName: 'uiInteraction', params: { action: 'button-click', from: 'remote-dom' } } }, '*');
+  });
+  root.appendChild(button);
+`;
+
+const resource5 = createUIResource({
+  uri: 'ui://remote-component/action-button',
+  content: {
+    type: 'remoteDom',
+    script: remoteDomScript,
+    flavor: 'react', // or 'webcomponents'
+  },
+  delivery: 'text',
+});
+console.log('Resource 5:', JSON.stringify(resource5, null, 2));
+/* Output for Resource 5:
+{
+  "type": "resource",
+  "resource": {
+    "uri": "ui://remote-component/action-button",
+    "mimeType": "application/vnd.mcp-ui.remote-dom+javascript; flavor=react",
+    "text": "\\n  const button = document.createElement('ui-button');\\n  button.setAttribute('label', 'Click me for a tool call!');\\n  button.addEventListener('press', () => {\\n    window.parent.postMessage({ type: 'tool', payload: { toolName: 'uiInteraction', params: { action: 'button-click', from: 'remote-dom' } } }, '*');\\n  });\\n  root.appendChild(button);\\n"
+  }
+}
+*/
+
 // These resource objects would then be included in the 'content' array
 // of a toolResult in an MCP interaction.
 
@@ -110,7 +141,7 @@ console.log(
 You can provide multiple URLs in the `text/uri-list` format for fallback purposes. However, **MCP-UI requires a single URL** and will only use the first valid URL found:
 
 ```typescript
-// Example 5: Multiple URLs with fallbacks (MCP-UI uses only the first)
+// Example 6: Multiple URLs with fallbacks (MCP-UI uses only the first)
 const multiUrlContent = `# Primary dashboard
 https://dashboard.example.com/main
 
@@ -120,7 +151,7 @@ https://backup.dashboard.example.com/main
 # Emergency fallback (will be logged but not used)  
 https://emergency.dashboard.example.com/main`;
 
-const resource5 = createUIResource({
+const resource6 = createUIResource({
   uri: 'ui://dashboard-with-fallbacks/session-123',
   content: { type: 'externalUrl', iframeUrl: multiUrlContent },
   delivery: 'text',
