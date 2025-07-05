@@ -52,15 +52,9 @@ import { createUIResource } from '@mcp-ui/server';
 
 const interactiveForm = createUIResource({
   uri: 'ui://user-form/1',
-  content: {
-    type: 'remoteDom',
-    flavor: 'react',
-    script: `
-      const button = document.createElement('ui-button');
-      button.setAttribute('label', 'Click Me');
-      button.addEventListener('press', () => console.log('Button clicked!'));
-      root.appendChild(button);
-    `,
+  content: { 
+    type: 'externalUrl', 
+    iframeUrl: 'https://yourapp.com'
   },
   delivery: 'text',
 });
@@ -69,12 +63,7 @@ const interactiveForm = createUIResource({
 **Client Side** - Render with one component:
 
 ```tsx
-import { 
-  UIResourceRenderer,
-  basicComponentLibrary,
-  remoteButtonDefinition,
-  remoteTextDefinition
-} from '@mcp-ui/client';
+import { UIResourceRenderer } from '@mcp-ui/client';
 
 function MyApp({ mcpResource }) {
   return (
@@ -84,14 +73,11 @@ function MyApp({ mcpResource }) {
         console.log('User action:', action);
         return { status: 'ok' };
       }}
-      remoteDomProps={{
-        library: basicComponentLibrary,
-        remoteElements: [remoteButtonDefinition, remoteTextDefinition],
-      }}
     />
   );
 }
 ```
+
 
 <style>
 .video-container {
