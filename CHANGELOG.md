@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/idosal/mcp-ui/compare/v3.0.0...v4.0.0) (2025-07-05)
+
+
+### Bug Fixes
+
+* rename components and methods to fit new scope ([#22](https://github.com/idosal/mcp-ui/issues/22)) ([6bab1fe](https://github.com/idosal/mcp-ui/commit/6bab1fe3a168a18e7ba4762e23478abf4e0cc84c))
+
+
+### BREAKING CHANGES
+
+* exported names have changed
+
 # [3.0.0](https://github.com/idosal/mcp-ui/compare/v2.5.1...v3.0.0) (2025-07-04)
 
 
