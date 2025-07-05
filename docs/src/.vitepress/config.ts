@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   lang: 'en-US',
   title: 'MCP-UI',
-  description: 'Interactive UI Components for Model Context Protocol - Build rich, dynamic user interfaces for your MCP applications',
+  description: 'Interactive UI for MCP - Build rich, dynamic interfaces with MCP-UI',
   base: '/',
   cleanUrls: true,
   
@@ -13,11 +13,11 @@ export default defineConfig({
     ['meta', { name: 'og:locale', content: 'en' }],
     ['meta', { name: 'og:title', content: 'MCP-UI | Interactive UI Components for MCP' }],
     ['meta', { name: 'og:site_name', content: 'MCP-UI' }],
-    ['meta', { name: 'og:image', content: '/og-image.png' }],
+    ['meta', { name: 'og:image', content: 'https://mcp-ui.dev/og-image.png' }],
     ['meta', { name: 'og:url', content: 'https://mcp-ui.dev/' }],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:image', content: '/og-image.png' }],
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.png' }],
+    ['meta', { name: 'twitter:image', content: 'https://mcp-ui.dev/og-image.png' }],
+    ['meta', { name: 'twitter:description', content: 'Interactive UI for MCP - Build rich, dynamic interfaces with MCP-UI' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
   ],
 
