@@ -37,7 +37,7 @@ features:
     letter-spacing: -0.01em; margin-bottom: 0.5rem; text-align: center; line-height: 1.2;">See it in action</span>
 <div class="video-container" style="display: flex; justify-content: center; align-items: center;">
   <video controls width="100%" style="max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
-    <source src="https://github.com/user-attachments/assets/51f7c712-8133-4d7c-86d3-fdca550b9767" type="video/mp4">
+    <source src="https://github.com/user-attachments/assets/7180c822-2dd9-4f38-9d3e-b67679509483" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -77,20 +77,6 @@ function MyApp({ mcpResource }) {
   );
 }
 ```
-<!-- 
-## Ready to Get Started? -->
-
-<!-- <div class="action-buttons">
-  <a href="/guide/introduction" class="action-button primary">
-    📚 Read the Guide
-  </a>
-  <!-- <a href="https://github.com/idosal/mcp-ui" class="action-button secondary">
-    ⭐ Star on GitHub
-  </a>
-  <a href="https://scira-mcp-chat-git-main-idosals-projects.vercel.app/" class="action-button secondary">
-    🚀 Try Live Demo
-  </a> -->
-<!-- </div> -->
 
 <style>
 .video-container {
