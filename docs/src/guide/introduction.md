@@ -8,23 +8,23 @@ This SDK provides tools for building Model Context Protocol (MCP) enabled applic
 
 MCP-UI is a TypeScript SDK containing:
 
-- **`@mcp-ui/client`**: UI components (like `<ResourceRenderer />`) for easy rendering of interactive HTML resources.
-- **`@mcp-ui/server`**: Helper functions (like `createHtmlResource`) for server-side logic to easily construct `HtmlResource` objects.
+- **`@mcp-ui/client`**: UI components (like `<UIResourceRenderer />`) for easy rendering of interactive UI.
+- **`@mcp-ui/server`**: Helper functions (like `createUIResource`) for server-side logic to easily construct `UIResource` objects.
 
-## Core Concept: The Interactive HTML Resource Protocol
+## Core Concept: The Interactive UI Resource Protocol
 
-The central piece of this SDK is the `HtmlResource`. This object defines a contract for how interactive HTML content should be structured and delivered from a server/tool to a client.
+The central piece of this SDK is the `UIResource`. This object defines a contract for how interactive UI should be structured and delivered from a server/tool to a client.
 
-### `HtmlResource` Structure
+### `UIResource` Structure
 
 ```typescript
-export interface HtmlResource {
-  type: 'resource'; // Fixed type identifier
+interface UIResource {
+  type: 'resource';
   resource: {
-    uri: string; // Unique identifier. Governs rendering behavior.
-    mimeType: 'text/html' | 'text/uri-list'; // text/html for HTML content, text/uri-list for URL content
-    text?: string; // Raw HTML string or an iframe URL string.
-    blob?: string; // Base64 encoded HTML string or iframe URL string.
+    uri: string;       // ui://component/id
+    mimeType: 'text/html' | 'text/uri-list' | 'application/vnd.mcp-ui.remote-dom'; // text/html for HTML content, text/uri-list for URL content, application/vnd.mcp-ui.remote-dom for remote-dom content (Javascript)
+    text?: string;      // Inline HTML or external URL
+    blob?: string;      // Base64-encoded HTML or URL
   };
 }
 ```
@@ -41,16 +41,16 @@ export interface HtmlResource {
 
 ## How It Works
 
-1. **Server Side**: Use `@mcp-ui/server` to create `HtmlResource` objects
+1. **Server Side**: Use `@mcp-ui/server` to create `HTMLResourceRenderer` objects
 2. **Client Side**: Use `@mcp-ui/client` to render these resources in your React app
 
 ### Example Flow
 
 **Server (MCP Tool):**
 ```typescript
-import { createHtmlResource } from '@mcp-ui/server';
+import { createUIResource } from '@mcp-ui/server';
 
-const resource = createHtmlResource({
+const resource = createUIResource({
   uri: 'ui://my-tool/dashboard',
   content: { type: 'rawHtml', htmlString: '<h1>Dashboard</h1>' },
   delivery: 'text'
@@ -62,16 +62,16 @@ return { content: [resource] };
 
 **Client (React App):**
 ```tsx
-import { ResourceRenderer } from '@mcp-ui/client';
+import { UIResourceRenderer } from '@mcp-ui/client';
 
 function App({ mcpResponse }) {
   return (
     <div>
       {mcpResponse.content.map((item) => (
-        <ResourceRenderer
+        <UIResourceRenderer
           key={item.resource.uri}
           resource={item.resource}
-          onUiAction={(result) => {
+          onUIAction={(result) => {
             console.log('Action:', result);
             return { status: 'handled' };
           }}
@@ -99,6 +99,5 @@ function App({ mcpResponse }) {
 
 ## Philosophy
 
-Returning snippets of UI as responses from MCP servers is a powerful way to create interactive experiences. However, it can be difficult to get right.
-This is an ongoing discussion in the MCP community and the [UI Community Working Group](https://github.com/modelcontextprotocol-community/working-groups/issues/35).
-This project is an experimental playground for MCP-UI ideas, as explore ways to make it easier.
+Allowing MCP servers to respond with UI snippets is a powerful way to create interactive experiences in hosts. Nailing down the best way to do it is challenging, and is an ongoing discussion in the MCP community and the [UI Community Working Group](https://github.com/modelcontextprotocol-community/working-groups/issues/35).
+This project is an experimental playground for MCP-UI ideas, that aims to test out philosophies in the wild.

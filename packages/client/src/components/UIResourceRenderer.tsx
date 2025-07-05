@@ -1,12 +1,12 @@
 import React from 'react';
 import type { Resource } from '@modelcontextprotocol/sdk/types.js';
 import { ResourceContentType } from '../types';
-import { HtmlResource, RenderHtmlResourceProps } from './HtmlResource';
-import { RemoteDomResource, RemoteDomResourceProps } from './RemoteDomResource';
+import { HTMLResourceRenderer, HTMLResourceRendererProps } from './HTMLResourceRenderer';
+import { RemoteDOMResourceProps, RemoteDOMResourceRenderer } from './RemoteDOMResourceRenderer';
 import { basicComponentLibrary } from '../remote-dom/component-libraries/basic';
 
-type ResourceRendererProps = Omit<
-  RenderHtmlResourceProps & RemoteDomResourceProps,
+type UIResourceRendererProps = Omit<
+  HTMLResourceRendererProps & RemoteDOMResourceProps,
   'resource'
 > & {
   resource: Partial<Resource>;
@@ -31,10 +31,10 @@ function getContentType(
   }
 }
 
-export const ResourceRenderer: React.FC<ResourceRendererProps> = (props) => {
+export const UIResourceRenderer: React.FC<UIResourceRendererProps> = (props) => {
   const {
     resource,
-    onUiAction,
+    onUIAction,
     style,
     iframeProps,
     supportedContentTypes,
@@ -57,18 +57,18 @@ export const ResourceRenderer: React.FC<ResourceRendererProps> = (props) => {
     case 'rawHtml':
     case 'externalUrl':
       return (
-        <HtmlResource
+        <HTMLResourceRenderer
           resource={resource}
-          onUiAction={onUiAction}
+          onUIAction={onUIAction}
           style={style}
           iframeProps={iframeProps}
         />
       );
     case 'remoteDom':
       return (
-        <RemoteDomResource
+        <RemoteDOMResourceRenderer
           resource={resource}
-          onUiAction={onUiAction}
+          onUIAction={onUIAction}
           library={library || basicComponentLibrary}
           remoteElements={remoteElements}
         />

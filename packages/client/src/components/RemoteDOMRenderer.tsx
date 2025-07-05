@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { DOMRemoteReceiver } from '@remote-dom/core/receivers';
 
-export type RemoteDomRendererProps = {
+export type RemoteDOMRendererProps = {
   receiver: DOMRemoteReceiver;
 };
 
-export const RemoteDomRenderer: React.FC<RemoteDomRendererProps> = ({
+export const RemoteDOMRenderer: React.FC<RemoteDOMRendererProps> = ({
   receiver,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);

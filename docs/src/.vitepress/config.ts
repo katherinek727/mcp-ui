@@ -79,17 +79,10 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Overview', link: '/guide/client/overview' },
-            { text: 'ResourceRenderer', link: '/guide/client/resource-renderer' },
-            { text: 'HtmlResource', link: '/guide/client/html-resource' },
-            { text: 'RemoteDomResource', link: '/guide/client/remote-dom-resource' },
+            { text: 'UIResourceRenderer', link: '/guide/client/resource-renderer' },
+            { text: 'HTMLResourceRenderer', link: '/guide/client/html-resource' },
+            { text: 'RemoteDOMResourceRenderer', link: '/guide/client/remote-dom-resource' },
             { text: 'Usage & Examples', link: '/guide/client/usage-examples' },
-          ],
-        },
-        {
-          text: 'Shared SDK',
-          collapsed: false,
-          items: [
-            { text: 'Overview', link: '/guide/shared/overview' },
           ],
         },
       ],

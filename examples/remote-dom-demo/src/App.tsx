@@ -1,5 +1,5 @@
 import {
-  ResourceRenderer,
+  UIResourceRenderer,
   basicComponentLibrary,
   remoteTextDefinition,
   remoteButtonDefinition,
@@ -18,7 +18,7 @@ const remoteElements = [
   remoteImageDefinition,
 ];
 
-const defaultRemoteDomScript = `let isDarkMode = false;
+const defaultRemoteDOMScript = `let isDarkMode = false;
 
 // Create the main container stack with centered alignment
 const stack = document.createElement('ui-stack');
@@ -74,8 +74,8 @@ root.appendChild(stack);
 `;
 
 function App() {
-  const [scriptContent, setScriptContent] = useState(defaultRemoteDomScript);
-  const [inputValue, setInputValue] = useState(defaultRemoteDomScript);
+  const [scriptContent, setScriptContent] = useState(defaultRemoteDOMScript);
+  const [inputValue, setInputValue] = useState(defaultRemoteDOMScript);
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
@@ -143,7 +143,7 @@ function App() {
         >
           <h2 style={{ textAlign: 'center' }}>Basic React Components</h2>
 
-          <ResourceRenderer
+          <UIResourceRenderer
             key={`basic-${scriptContent}`}
             resource={mockResourceReact}
             library={basicComponentLibrary}
@@ -160,7 +160,7 @@ function App() {
         >
           <h2 style={{ textAlign: 'center' }}>Radix React Components</h2>
 
-          <ResourceRenderer
+          <UIResourceRenderer
             key={`radix-${scriptContent}`}
             resource={mockResourceReact}
             library={radixComponentLibrary}
@@ -177,7 +177,7 @@ function App() {
         >
           <h2 style={{ textAlign: 'center' }}>Web Components</h2>
 
-          <ResourceRenderer
+          <UIResourceRenderer
             key={`webcomponents-${scriptContent}`}
             resource={mockResourceWebComponents}
             library={basicComponentLibrary}

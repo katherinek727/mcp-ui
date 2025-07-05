@@ -1,25 +1,19 @@
-/**
- * Defines the structure of an interactive HTML resource block
- * that the server will send to the client.
- */
-
-// Import types first
 import {
   Base64BlobContent,
-  CreateHtmlResourceOptions,
-  HtmlTextContent,
+  CreateUIResourceOptions,
+  HTMLTextContent,
   MimeType,
-  UiActionResult,
-  UiActionResultLink,
-  UiActionResultNotification,
-  UiActionResultPrompt,
-  UiActionResultIntent,
-  UiActionResultToolCall,
+  UIActionResult,
+  UIActionResultLink,
+  UIActionResultNotification,
+  UIActionResultPrompt,
+  UIActionResultIntent,
+  UIActionResultToolCall,
 } from './types.js';
 
-export type HtmlResourceBlock = {
+export type UIResource = {
   type: 'resource';
-  resource: HtmlTextContent | Base64BlobContent;
+  resource: HTMLTextContent | Base64BlobContent;
 };
 
 /**
@@ -57,14 +51,14 @@ function robustUtf8ToBase64(str: string): string {
 }
 
 /**
- * Creates an HtmlResourceBlock.
+ * Creates a UIResource.
  * This is the object that should be included in the 'content' array of a toolResult.
  * @param options Configuration for the interactive resource.
- * @returns An HtmlResourceBlock.
+ * @returns a UIResource.
  */
-export function createHtmlResource(
-  options: CreateHtmlResourceOptions,
-): HtmlResourceBlock {
+export function createUIResource(
+  options: CreateUIResourceOptions,
+): UIResource {
   let actualContentString: string;
   let mimeType: MimeType;
 
@@ -116,7 +110,7 @@ export function createHtmlResource(
     );
   }
 
-  let resource: HtmlResourceBlock['resource'];
+  let resource: UIResource['resource'];
 
   switch (options.delivery) {
     case 'text':
@@ -147,12 +141,12 @@ export function createHtmlResource(
 }
 
 export type {
-  CreateHtmlResourceOptions,
+  CreateUIResourceOptions,
   ResourceContentPayload,
-  UiActionResult,
+  UIActionResult,
 } from './types.js';
 
-export function postUiActionResult(result: UiActionResult): void {
+export function postUIActionResult(result: UIActionResult): void {
   if (window.parent) {
     window.parent.postMessage(result, '*');
   }
@@ -161,7 +155,7 @@ export function postUiActionResult(result: UiActionResult): void {
 export function uiActionResultToolCall(
   toolName: string,
   params: Record<string, unknown>,
-): UiActionResultToolCall {
+): UIActionResultToolCall {
   return {
     type: 'tool',
     payload: {
@@ -171,7 +165,7 @@ export function uiActionResultToolCall(
   };
 }
 
-export function uiActionResultPrompt(prompt: string): UiActionResultPrompt {
+export function uiActionResultPrompt(prompt: string): UIActionResultPrompt {
   return {
     type: 'prompt',
     payload: {
@@ -180,7 +174,7 @@ export function uiActionResultPrompt(prompt: string): UiActionResultPrompt {
   };
 }
 
-export function uiActionResultLink(url: string): UiActionResultLink {
+export function uiActionResultLink(url: string): UIActionResultLink {
   return {
     type: 'link',
     payload: {
@@ -192,7 +186,7 @@ export function uiActionResultLink(url: string): UiActionResultLink {
 export function uiActionResultIntent(
   intent: string,
   params: Record<string, unknown>,
-): UiActionResultIntent {
+): UIActionResultIntent {
   return {
     type: 'intent',
     payload: {
@@ -204,7 +198,7 @@ export function uiActionResultIntent(
 
 export function uiActionResultNotification(
   message: string,
-): UiActionResultNotification {
+): UIActionResultNotification {
   return {
     type: 'notification',
     payload: {

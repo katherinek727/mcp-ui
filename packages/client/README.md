@@ -35,8 +35,8 @@
 
 `mcp-ui` is a TypeScript SDK comprising two packages:
 
-* **`@mcp-ui/server`**: Utilities to generate UI snippets (`HtmlResourceBlock`) on your MCP server.
-* **`@mcp-ui/client`**: UI components (e.g., `<ResourceRenderer />`) to render those snippets and handle their events.
+* **`@mcp-ui/server`**: Utilities to generate UI resources (`UIResource`) on your MCP server.
+* **`@mcp-ui/client`**: UI components (e.g., `<UIResourceRenderer />`) to render the UI resources and handle their events.
 
 Together, they let you define reusable UI snippets on the server side, seamlessly and securely render them in the client, and react to their actions in the MCP host environment.
 
@@ -44,11 +44,11 @@ Together, they let you define reusable UI snippets on the server side, seamlessl
 
 In essence, by using `mcp-ui` SDKs, servers and hosts can agree on contracts that enable them to create and render interactive UI snippets (as a path to a standardized UI approach in MCP).
 
-### HTML Resource Block
-The primary payload returned from the server to the client is the `HtmlResourceBlock`:
+### UI Resource
+The primary payload returned from the server to the client is the `UIResource`:
 
 ```ts
-interface HtmlResourceBlock {
+interface UIResource {
   type: 'resource';
   resource: {
     uri: string;       // ui://component/id
@@ -67,11 +67,11 @@ interface HtmlResourceBlock {
 
 ### Resource Renderer
 
-The HTML Resource Block is rendered in the `<ResourceRenderer />` component. It automatically detects the resource type and renders the appropriate component.
+The UI Resource is rendered in the `<UIResourceRenderer />` component. It automatically detects the resource type and renders the appropriate component.
 
 It accepts the following props:
 - **`resource`**: The resource object from an MCP response. Should include `uri`, `mimeType`, and content (`text`, `blob`, or `content`)
-- **`onUiAction`**: Optional callback for handling UI actions from the resource:
+- **`onUIAction`**: Optional callback for handling UI actions from the resource:
   ```typescript
   { type: 'tool', payload: { toolName: string, params: Record<string, unknown> } } |
   { type: 'intent', payload: { intent: string, params: Record<string, unknown> } } |
@@ -89,17 +89,17 @@ It accepts the following props:
 
 #### HTML (`text/html` and `text/uri-list`)
 
-Rendered using the `<HtmlResource />` component, which displays content inside an `<iframe>`. This is suitable for self-contained HTML or embedding external apps.
+Rendered using the `<HTMLResourceRenderer />` component, which displays content inside an `<iframe>`. This is suitable for self-contained HTML or embedding external apps.
 
-**`mimeType`**:
+*   **`mimeType`**:
     *   `text/html`: Renders inline HTML content.
     *   `text/uri-list`: Renders an external URL. MCP-UI uses the first valid URL.
 
 #### Remote DOM (`application/vnd.mcp-ui.remote-dom`)
 
-Rendered using the `<RemoteDomResource />` component, which uses Shopify's [`remote-dom`](https://github.com/Shopify/remote-dom). The server responds with a script that describes the UI and events. On the host, the script is securely rendered in a sandboxed iframe, and the UI changes are communicated to the host in JSON, where they're rendered using the host's component library. This is more flexible than iframes and allows for UIs that match the host's look-and-feel.
+Rendered using the `<RemoteDOMResourceRenderer />` component, which uses Shopify's [`remote-dom`](https://github.com/Shopify/remote-dom). The server responds with a script that describes the UI and events. On the host, the script is securely rendered in a sandboxed iframe, and the UI changes are communicated to the host in JSON, where they're rendered using the host's component library. This is more flexible than iframes and allows for UIs that match the host's look-and-feel.
 
-**`mimeType`**: `application/vnd.mcp-ui.remote-dom; flavor={react | webcomponents}`
+* **`mimeType`**: `application/vnd.mcp-ui.remote-dom; flavor={react | webcomponents}`
 
 ### UI Action
 
@@ -123,7 +123,7 @@ yarn add @mcp-ui/server @mcp-ui/client
 1. **Server-side**: Build your resource blocks
 
    ```ts
-   import { createHtmlResource } from '@mcp-ui/server';
+   import { createUIResource } from '@mcp-ui/server';
    import {
     createRemoteComponent,
     createRemoteDocument,
@@ -131,14 +131,14 @@ yarn add @mcp-ui/server @mcp-ui/client
    } from '@remote-dom/core';
 
    // Inline HTML
-   const htmlResource = createHtmlResource({
+   const htmlResource = createUIResource({
      uri: 'ui://greeting/1',
      content: { type: 'rawHtml', htmlString: '<p>Hello, MCP UI!</p>' },
      delivery: 'text',
    });
 
    // External URL
-   const externalUrlResource = createHtmlResource({
+   const externalUrlResource = createUIResource({
      uri: 'ui://greeting/1',
      content: { type: 'externalUrl', iframeUrl: 'https://example.com' },
      delivery: 'text',
@@ -149,7 +149,7 @@ yarn add @mcp-ui/server @mcp-ui/client
 
    ```tsx
    import React from 'react';
-   import { ResourceRenderer } from '@mcp-ui/client';
+   import { UIResourceRenderer } from '@mcp-ui/client';
 
    function App({ mcpResource }) {
      if (
@@ -157,9 +157,9 @@ yarn add @mcp-ui/server @mcp-ui/client
        mcpResource.resource.uri?.startsWith('ui://')
      ) {
        return (
-         <ResourceRenderer
+         <UIResourceRenderer
            resource={mcpResource.resource}
-           onUiAction={(result) => {
+           onUIAction={(result) => {
              console.log('Action:', result);
              return { status: 'ok' };
            }}
@@ -170,7 +170,7 @@ yarn add @mcp-ui/server @mcp-ui/client
    }
    ```
 
-3. **Enjoy** interactive MCP UI snippets — no extra configuration required.
+3. **Enjoy** interactive MCP UI — no extra configuration required.
 
 ## 🌍 Examples
 
@@ -199,6 +199,7 @@ Host and user security is one of `mcp-ui`'s primary concerns. In all content typ
 - [X] Support Web Components
 - [X] Support Remote-DOM
 - [ ] Add component libraries (in progress)
+- [ ] Support additional frontend frameworks
 - [ ] Add declarative UI content type
 - [ ] Support generative UI?
       
