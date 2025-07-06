@@ -24,10 +24,12 @@ export interface UIResource {
   - **Content**: `text` or `blob` contains either HTML string or URL string.
   - **Client Action**: 
     - If `mimeType: 'text/html'` → Render in a sandboxed iframe using `srcdoc`
-    - If `mimeType: 'text/uri-list'` → Render in an iframe using `src`
+    - If `mimeType: 'text/uri-list'` → Render in a sandboxed iframe using `src`
+    - If `mimeType: 'application/vnd.mcp-ui.remote-dom'` → Execute in sandboxed iframe and render in the tree
   - **Examples**: 
     - HTML content: A custom button, a small form, a data visualization snippet
     - URL content: Embedding a Grafana dashboard, a third-party widget, a mini-application
+    - RemoteDOM content: A component to be rendered with the host's look-and-feel (component library)
 
 ## Content Delivery: `text` vs. `blob`
 
