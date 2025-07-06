@@ -1,7 +1,7 @@
 import React, { useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import type { Resource } from '@modelcontextprotocol/sdk/types.js';
 import { UIActionResult } from '../types';
-import { processResource } from '../utils/processResource';
+import { processHTMLResource } from '../utils/processResource';
 
 export type HTMLResourceRendererProps = {
   resource: Partial<Resource>;
@@ -25,7 +25,7 @@ export const HTMLResourceRenderer = React.forwardRef<
     useImperativeHandle(ref, () => iframeRef.current as HTMLIFrameElement);
 
     const { error, iframeSrc, iframeRenderMode, htmlString } = useMemo(
-      () => processResource(resource),
+      () => processHTMLResource(resource),
       [resource],
     );
 

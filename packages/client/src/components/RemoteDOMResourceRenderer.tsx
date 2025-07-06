@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from 'react';
+import React, { useMemo, useEffect, useRef, useState } from 'react';
 import { DOMRemoteReceiver } from '@remote-dom/core/receivers';
 import { 
   createRemoteComponentRenderer,
@@ -12,6 +12,7 @@ import type { SandboxAPI, RemoteElementConfiguration, UIActionResult } from '../
 import type { ComponentLibrary } from '../remote-dom/types/componentLibrary';
 import { basicComponentLibrary } from '../remote-dom/component-libraries/basic';
 import { RemoteDOMRenderer } from './RemoteDOMRenderer';
+import { processRemoteDOMResource } from '../utils/processResource';
 
 export type RemoteDOMResourceProps = {
   resource: Partial<Resource>;
@@ -28,6 +29,7 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const threadRef = useRef<ThreadIframe<SandboxAPI> | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const flavor = useMemo(() => {
     const mimeType = resource.mimeType || '';
@@ -122,19 +124,32 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
     const thread = new ThreadIframe<SandboxAPI>(iframe);
     threadRef.current = thread;
 
-    if (resource.content && typeof resource.content === 'string' && receiver?.connection) {
-        const options = {
-        code: resource.content,
+    const { code, error: processingError } = processRemoteDOMResource(resource);
+
+    if (processingError) {
+      setError(processingError);
+      return;
+    }
+
+    if (code && receiver?.connection) {
+      const options = {
+        code,
         remoteElements,
         useReactRenderer: flavor === 'react',
         componentLibrary: library?.name,
       };
       thread.imports
         .render(options, receiver.connection)
-        .catch((error: Error) => console.error('Error calling remote render:', error));
+        .catch((error: Error) =>
+          console.error('Error calling remote render:', error),
+        );
     }
   };
   
+  if (error) {
+    return <p className="text-red-500">{error}</p>;
+  }
+
   return (
     <>
       <iframe

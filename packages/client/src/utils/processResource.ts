@@ -7,7 +7,7 @@ type ProcessResourceResult = {
   htmlString?: string;
 };
 
-export function processResource(
+export function processHTMLResource(
   resource: Partial<Resource>,
 ): ProcessResourceResult {
   if (
@@ -109,3 +109,39 @@ export function processResource(
     };
   }
 }
+
+
+type ProcessRemoteDOMResourceResult = {
+  error?: string;
+  code?: string;
+};
+
+export function processRemoteDOMResource(
+  resource: Partial<Resource>,
+): ProcessRemoteDOMResourceResult {
+  if (typeof resource.text === 'string' && resource.text.trim() !== '') {
+    return {
+      code: resource.text,
+    };
+  }
+
+  if (typeof resource.blob === 'string') {
+    try {
+      const decodedCode = new TextDecoder().decode(
+        Uint8Array.from(atob(resource.blob), (c) => c.charCodeAt(0)),
+      );
+      return {
+        code: decodedCode,
+      };
+    } catch (e) {
+      console.error('Error decoding base64 blob for remote DOM content:', e);
+      return {
+        error: 'Error decoding remote DOM content from blob.',
+      };
+    }
+  }
+
+  return {
+    error: 'Remote DOM resource requires non-empty text or blob content.',
+  };
+} 
