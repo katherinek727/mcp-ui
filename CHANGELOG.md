@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/idosal/mcp-ui/compare/v4.1.0...v4.1.1) (2025-07-06)
+
+
+### Bug Fixes
+
+* text and blob support in RemoteDOM resources ([ec68eb9](https://github.com/idosal/mcp-ui/commit/ec68eb90df984da8b492cc25eafdafdeda79f299))
+
 # [4.1.0](https://github.com/idosal/mcp-ui/compare/v4.0.0...v4.1.0) (2025-07-05)
 
 
