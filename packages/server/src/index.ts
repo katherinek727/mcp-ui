@@ -25,10 +25,7 @@ export type UIResource = {
 function robustUtf8ToBase64(str: string): string {
   if (typeof Buffer !== 'undefined') {
     return Buffer.from(str, 'utf-8').toString('base64');
-  } else if (
-    typeof TextEncoder !== 'undefined' &&
-    typeof btoa !== 'undefined'
-  ) {
+  } else if (typeof TextEncoder !== 'undefined' && typeof btoa !== 'undefined') {
     const encoder = new TextEncoder();
     const uint8Array = encoder.encode(str);
     let binaryString = '';
@@ -56,17 +53,13 @@ function robustUtf8ToBase64(str: string): string {
  * @param options Configuration for the interactive resource.
  * @returns a UIResource.
  */
-export function createUIResource(
-  options: CreateUIResourceOptions,
-): UIResource {
+export function createUIResource(options: CreateUIResourceOptions): UIResource {
   let actualContentString: string;
   let mimeType: MimeType;
 
   if (options.content.type === 'rawHtml') {
     if (!options.uri.startsWith('ui://')) {
-      throw new Error(
-        "MCP SDK: URI must start with 'ui://' when content.type is 'rawHtml'.",
-      );
+      throw new Error("MCP SDK: URI must start with 'ui://' when content.type is 'rawHtml'.");
     }
     actualContentString = options.content.htmlString;
     if (typeof actualContentString !== 'string') {
@@ -77,9 +70,7 @@ export function createUIResource(
     mimeType = 'text/html';
   } else if (options.content.type === 'externalUrl') {
     if (!options.uri.startsWith('ui://')) {
-      throw new Error(
-        "MCP SDK: URI must start with 'ui://' when content.type is 'externalUrl'.",
-      );
+      throw new Error("MCP SDK: URI must start with 'ui://' when content.type is 'externalUrl'.");
     }
     actualContentString = options.content.iframeUrl;
     if (typeof actualContentString !== 'string') {
@@ -90,9 +81,7 @@ export function createUIResource(
     mimeType = 'text/uri-list';
   } else if (options.content.type === 'remoteDom') {
     if (!options.uri.startsWith('ui://')) {
-      throw new Error(
-        "MCP SDK: URI must start with 'ui://' when content.type is 'remoteDom'.",
-      );
+      throw new Error("MCP SDK: URI must start with 'ui://' when content.type is 'remoteDom'.");
     }
     actualContentString = options.content.script;
     if (typeof actualContentString !== 'string') {
@@ -100,14 +89,11 @@ export function createUIResource(
         "MCP SDK: content.script must be provided as a string when content.type is 'remoteDom'.",
       );
     }
-    mimeType =
-      `application/vnd.mcp-ui.remote-dom+javascript; flavor=${options.content.flavor}`;
+    mimeType = `application/vnd.mcp-ui.remote-dom+javascript; flavor=${options.content.flavor}`;
   } else {
     // This case should ideally be prevented by TypeScript's discriminated union checks
     const exhaustiveCheckContent: never = options.content;
-    throw new Error(
-      `MCP SDK: Invalid content.type specified: ${exhaustiveCheckContent}`,
-    );
+    throw new Error(`MCP SDK: Invalid content.type specified: ${exhaustiveCheckContent}`);
   }
 
   let resource: UIResource['resource'];
@@ -127,11 +113,10 @@ export function createUIResource(
         blob: robustUtf8ToBase64(actualContentString),
       };
       break;
-    default:
-      {
-        const exhaustiveCheck: never = options.delivery;
-        throw new Error(`Invalid delivery type: ${exhaustiveCheck}`);
-      };
+    default: {
+      const exhaustiveCheck: never = options.delivery;
+      throw new Error(`Invalid delivery type: ${exhaustiveCheck}`);
+    }
   }
 
   return {
@@ -140,11 +125,7 @@ export function createUIResource(
   };
 }
 
-export type {
-  CreateUIResourceOptions,
-  ResourceContentPayload,
-  UIActionResult,
-} from './types.js';
+export type { CreateUIResourceOptions, ResourceContentPayload, UIActionResult } from './types.js';
 
 export function postUIActionResult(result: UIActionResult): void {
   if (window.parent) {
@@ -196,9 +177,7 @@ export function uiActionResultIntent(
   };
 }
 
-export function uiActionResultNotification(
-  message: string,
-): UIActionResultNotification {
+export function uiActionResultNotification(message: string): UIActionResultNotification {
   return {
     type: 'notification',
     payload: {

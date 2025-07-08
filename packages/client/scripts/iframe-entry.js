@@ -1,8 +1,5 @@
-import {
-  RemoteElement,
-  RemoteMutationObserver,
-} from '@remote-dom/core/elements';
-import {ThreadNestedIframe} from '@quilted/threads';
+import { RemoteElement, RemoteMutationObserver } from '@remote-dom/core/elements';
+import { ThreadNestedIframe } from '@quilted/threads';
 
 new ThreadNestedIframe({
   exports: {
@@ -21,8 +18,9 @@ new ThreadNestedIframe({
           };
           // Give the class a name for easier debugging
           Object.defineProperty(remoteElement, 'name', {
-            value: `Remote${def.tagName
-              .replace(/(^\w|-\w)/g, (c) => c.replace('-', '').toUpperCase())}`,
+            value: `Remote${def.tagName.replace(/(^\w|-\w)/g, (c) =>
+              c.replace('-', '').toUpperCase(),
+            )}`,
           });
 
           customElements.define(def.tagName, remoteElement);
@@ -33,7 +31,7 @@ new ThreadNestedIframe({
       const observer = new RemoteMutationObserver(receiver);
       observer.observe(root);
 
-      const {code} = options;
+      const { code } = options;
 
       if (code && root) {
         try {

@@ -21,4 +21,4 @@ export const remoteStackDefinition = {
 export const remoteImageDefinition = {
   tagName: 'ui-image',
   remoteAttributes: ['src', 'alt', 'width', 'height'],
-}; 
+};

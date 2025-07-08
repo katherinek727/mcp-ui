@@ -13,9 +13,7 @@ type UIResourceRendererProps = {
   remoteDomProps?: Omit<RemoteDOMResourceProps, 'resource' | 'onUIAction'>;
 };
 
-function getContentType(
-  resource: Partial<Resource>,
-): ResourceContentType | undefined {
+function getContentType(resource: Partial<Resource>): ResourceContentType | undefined {
   if (resource.contentType) {
     return resource.contentType as ResourceContentType;
   }
@@ -32,35 +30,17 @@ function getContentType(
 }
 
 export const UIResourceRenderer: React.FC<UIResourceRendererProps> = (props) => {
-  const {
-    resource,
-    onUIAction,
-    supportedContentTypes,
-    htmlProps,
-    remoteDomProps,
-  } = props;
+  const { resource, onUIAction, supportedContentTypes, htmlProps, remoteDomProps } = props;
   const contentType = getContentType(resource);
 
-  if (
-    supportedContentTypes &&
-    contentType &&
-    !supportedContentTypes.includes(contentType)
-  ) {
-    return (
-      <p className="text-red-500">Unsupported content type: {contentType}.</p>
-    );
+  if (supportedContentTypes && contentType && !supportedContentTypes.includes(contentType)) {
+    return <p className="text-red-500">Unsupported content type: {contentType}.</p>;
   }
 
   switch (contentType) {
     case 'rawHtml':
     case 'externalUrl':
-      return (
-        <HTMLResourceRenderer
-          resource={resource}
-          onUIAction={onUIAction}
-          {...htmlProps}
-        />
-      );
+      return <HTMLResourceRenderer resource={resource} onUIAction={onUIAction} {...htmlProps} />;
     case 'remoteDom':
       return (
         <RemoteDOMResourceRenderer

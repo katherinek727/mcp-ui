@@ -23,9 +23,7 @@ describe('@mcp-ui/server', () => {
         delivery: 'blob' as const,
       };
       const resource = createUIResource(options);
-      expect(resource.resource.blob).toBe(
-        Buffer.from('<h1>Blob</h1>').toString('base64'),
-      );
+      expect(resource.resource.blob).toBe(Buffer.from('<h1>Blob</h1>').toString('base64'));
       expect(resource.resource.text).toBeUndefined();
     });
 
@@ -70,9 +68,7 @@ describe('@mcp-ui/server', () => {
       };
       const resource = createUIResource(options);
       expect(resource.resource.mimeType).toBe('text/html');
-      expect(resource.resource.blob).toBe(
-        Buffer.from('<h1>Blob</h1>').toString('base64'),
-      );
+      expect(resource.resource.blob).toBe(Buffer.from('<h1>Blob</h1>').toString('base64'));
       expect(resource.resource.text).toBeUndefined();
     });
 
@@ -137,9 +133,7 @@ describe('@mcp-ui/server', () => {
       expect(resource.resource.mimeType).toBe(
         'application/vnd.mcp-ui.remote-dom+javascript; flavor=webcomponents',
       );
-      expect(resource.resource.blob).toBe(
-        Buffer.from('<p>Web Component</p>').toString('base64'),
-      );
+      expect(resource.resource.blob).toBe(Buffer.from('<p>Web Component</p>').toString('base64'));
       expect(resource.resource.text).toBeUndefined();
     });
 

@@ -8,7 +8,7 @@ if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'un
 }
 
 if (typeof window !== 'undefined' && typeof window.cancelAnimationFrame === 'undefined') {
-    window.cancelAnimationFrame = (id) => {
-        clearTimeout(id);
-    };
-} 
+  window.cancelAnimationFrame = (id) => {
+    clearTimeout(id);
+  };
+}

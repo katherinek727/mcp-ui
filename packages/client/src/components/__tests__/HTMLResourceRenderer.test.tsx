@@ -13,16 +13,13 @@ describe('HTMLResource component', () => {
     onUIAction: mockOnUIAction,
   };
 
-  
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('renders HTML content from text property using srcDoc', () => {
     render(<HTMLResourceRenderer {...defaultProps} />);
-    const iframe = screen.getByTitle(
-      'MCP HTML Resource (Embedded Content)',
-    ) as HTMLIFrameElement;
+    const iframe = screen.getByTitle('MCP HTML Resource (Embedded Content)') as HTMLIFrameElement;
     expect(iframe).toBeInTheDocument();
     expect(iframe.srcdoc).toContain('<p>Hello Test</p>');
   });
@@ -37,9 +34,7 @@ describe('HTMLResource component', () => {
       onUIAction: mockOnUIAction,
     };
     render(<HTMLResourceRenderer {...props} />);
-    const iframe = screen.getByTitle(
-      'MCP HTML Resource (URL)',
-    ) as HTMLIFrameElement;
+    const iframe = screen.getByTitle('MCP HTML Resource (URL)') as HTMLIFrameElement;
     expect(iframe).toBeInTheDocument();
     expect(iframe.src).toBe('https://example.com/app');
   });
@@ -59,9 +54,7 @@ describe('HTMLResource component', () => {
     // it might show an error or "No HTML content" instead of "Loading".
     // This assertion depends heavily on the refined async logic of HTMLResource.
     // For now, let's expect the fallback paragraph because no content is provided.
-    expect(
-      screen.getByText('HTML resource requires text or blob content.'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('HTML resource requires text or blob content.')).toBeInTheDocument();
   });
 
   it('displays an error message if resource mimeType is not text/html or text/uri-list', () => {
@@ -89,9 +82,7 @@ describe('HTMLResource component', () => {
       onUIAction: mockOnUIAction,
     };
     render(<HTMLResourceRenderer {...props} />);
-    const iframe = screen.getByTitle(
-      'MCP HTML Resource (Embedded Content)',
-    ) as HTMLIFrameElement;
+    const iframe = screen.getByTitle('MCP HTML Resource (Embedded Content)') as HTMLIFrameElement;
     expect(iframe.srcdoc).toContain(html);
   });
 
@@ -107,16 +98,12 @@ describe('HTMLResource component', () => {
       onUIAction: mockOnUIAction,
     };
     render(<HTMLResourceRenderer {...props} />);
-    const iframe = screen.getByTitle(
-      'MCP HTML Resource (URL)',
-    ) as HTMLIFrameElement;
+    const iframe = screen.getByTitle('MCP HTML Resource (URL)') as HTMLIFrameElement;
     expect(iframe.src).toBe(url);
   });
 
   it('handles multiple URLs in uri-list format and uses the first one', () => {
-    const consoleWarnSpy = vi
-      .spyOn(console, 'warn')
-      .mockImplementation(() => {});
+    const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const uriList =
       'https://example.com/first\nhttps://example.com/second\nhttps://example.com/third';
     const props: HTMLResourceRendererProps = {
@@ -128,9 +115,7 @@ describe('HTMLResource component', () => {
       onUIAction: mockOnUIAction,
     };
     render(<HTMLResourceRenderer {...props} />);
-    const iframe = screen.getByTitle(
-      'MCP HTML Resource (URL)',
-    ) as HTMLIFrameElement;
+    const iframe = screen.getByTitle('MCP HTML Resource (URL)') as HTMLIFrameElement;
     expect(iframe.src).toBe('https://example.com/first');
     expect(consoleWarnSpy).toHaveBeenCalledWith(
       'Multiple URLs found in uri-list content. Using the first URL: "https://example.com/first". Other URLs ignored:',
@@ -155,9 +140,7 @@ https://example.com/backup
       onUIAction: mockOnUIAction,
     };
     render(<HTMLResourceRenderer {...props} />);
-    const iframe = screen.getByTitle(
-      'MCP HTML Resource (URL)',
-    ) as HTMLIFrameElement;
+    const iframe = screen.getByTitle('MCP HTML Resource (URL)') as HTMLIFrameElement;
     expect(iframe.src).toBe('https://example.com/main');
   });
 
@@ -174,9 +157,7 @@ https://example.com/backup
       onUIAction: mockOnUIAction,
     };
     render(<HTMLResourceRenderer {...props} />);
-    expect(
-      screen.getByText('No valid URLs found in uri-list content.'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('No valid URLs found in uri-list content.')).toBeInTheDocument();
   });
 });
 
@@ -193,9 +174,7 @@ describe('HTMLResource iframe communication', () => {
   const mockOnUIAction = vi.fn<[UIActionResult], Promise<unknown>>();
   const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-  const renderComponentForUIActionTests = (
-    props: Partial<HTMLResourceRendererProps> = {},
-  ) => {
+  const renderComponentForUIActionTests = (props: Partial<HTMLResourceRendererProps> = {}) => {
     return render(
       <HTMLResourceRenderer
         resource={props.resource || mockResourceBaseForUIActionTests}
@@ -320,9 +299,7 @@ describe('HTMLResource iframe communication', () => {
     );
 
     // Iframe should not be present
-    expect(
-      screen.queryByTitle('MCP HTML Resource (Embedded Content)'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTitle('MCP HTML Resource (Embedded Content)')).not.toBeInTheDocument();
     // Error message should be displayed
     expect(
       await screen.findByText(
@@ -339,10 +316,7 @@ describe('HTMLResource iframe communication', () => {
 });
 
 // Helper to dispatch a message event
-const dispatchMessage = (
-  source: Window | null,
-  data: Record<string, unknown> | null,
-) => {
+const dispatchMessage = (source: Window | null, data: Record<string, unknown> | null) => {
   fireEvent(
     window,
     new MessageEvent('message', {

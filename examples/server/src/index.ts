@@ -2,9 +2,7 @@ import { McpAgent } from 'agents/mcp';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { createRequestHandler } from 'react-router';
-import {
-  createUIResource,
-} from '@mcp-ui/server';
+import { createUIResource } from '@mcp-ui/server';
 
 declare module 'react-router' {
   export interface AppLoadContext {
@@ -136,22 +134,16 @@ export class MyMCP extends McpAgent {
       },
     );
 
-    this.server.tool(
-      'nudge_team_member',
-      { name: z.string() },
-      async ({ name }) => ({
-        content: [{ type: 'text', text: 'Nudged ' + name + '!' }],
-      }),
-    );
+    this.server.tool('nudge_team_member', { name: z.string() }, async ({ name }) => ({
+      content: [{ type: 'text', text: 'Nudged ' + name + '!' }],
+    }));
 
     this.server.tool(
       'show_task_status',
       'Displays a UI for the user to see the status of tasks. Use get_tasks_status unless asked to SHOW the status',
       async () => {
         const scheme =
-          requestHost.includes('localhost') || requestHost.includes('127.0.0.1')
-            ? 'http'
-            : 'https';
+          requestHost.includes('localhost') || requestHost.includes('127.0.0.1') ? 'http' : 'https';
 
         const pickerPageUrl = `${scheme}://${requestHost}/task`;
 
@@ -175,9 +167,7 @@ export class MyMCP extends McpAgent {
       { id: z.string(), name: z.string(), avatarUrl: z.string() },
       async ({ id, name, avatarUrl }) => {
         const scheme =
-          requestHost.includes('localhost') || requestHost.includes('127.0.0.1')
-            ? 'http'
-            : 'https';
+          requestHost.includes('localhost') || requestHost.includes('127.0.0.1') ? 'http' : 'https';
 
         const pickerPageUrl = `${scheme}://${requestHost}/user?id=${id}&name=${name}&avatarUrl=${avatarUrl}`;
 
@@ -259,21 +249,24 @@ export class MyMCP extends McpAgent {
             stack.appendChild(toggleButton);
             root.appendChild(stack);
           `,
-        }
+        },
       });
       return {
         content: [resourceBlock],
       };
     });
 
-    this.server.tool('show_remote_dom_web_components', 'Shows a web components remote-dom component', async () => {
-      const resourceBlock = createUIResource({
-        uri: `ui://remote-dom-wc/${Date.now()}` as `ui://${string}`,
-        delivery: 'text',
-        content: {
-          type: 'remoteDom',
-          flavor: 'webcomponents',
-          script: `
+    this.server.tool(
+      'show_remote_dom_web_components',
+      'Shows a web components remote-dom component',
+      async () => {
+        const resourceBlock = createUIResource({
+          uri: `ui://remote-dom-wc/${Date.now()}` as `ui://${string}`,
+          delivery: 'text',
+          content: {
+            type: 'remoteDom',
+            flavor: 'webcomponents',
+            script: `
             // Create a state variable to track the current logo
             let isDarkMode = false;
 
@@ -329,12 +322,13 @@ export class MyMCP extends McpAgent {
             stack.appendChild(toggleButton);
             root.appendChild(stack);
           `,
-        }
-      });
-      return {
-        content: [resourceBlock],
-      };
-    });
+          },
+        });
+        return {
+          content: [resourceBlock],
+        };
+      },
+    );
   }
 }
 

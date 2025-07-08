@@ -118,8 +118,7 @@ const RadixButton = React.forwardRef<
       case 'outline':
         return {
           ...baseStyles,
-          background:
-            'linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7))',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7))',
           color: '#6c2bd9',
           borderColor: '#6c2bd9',
           borderWidth: '2px',
@@ -131,8 +130,7 @@ const RadixButton = React.forwardRef<
           ...baseStyles,
           background: 'linear-gradient(135deg, #6c2bd9, #8b5cf6)',
           color: 'white',
-          boxShadow:
-            '0 6px 20px rgba(108, 43, 217, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 6px 20px rgba(108, 43, 217, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.2)',
         };
     }
   };
@@ -222,8 +220,7 @@ const RadixStack = React.forwardRef<
           borderRadius: '16px',
           background: 'linear-gradient(135deg, #faf5ff, #f3e8ff)',
           border: '2px solid #e5d3ff',
-          boxShadow:
-            '0 8px 32px rgba(108, 43, 217, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.6)',
+          boxShadow: '0 8px 32px rgba(108, 43, 217, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.6)',
           position: 'relative' as const,
         },
         ...props,
@@ -260,8 +257,7 @@ const RadixImage = React.forwardRef<
       height: 'auto',
       borderRadius: '16px',
       border: '3px solid #e5d3ff',
-      boxShadow:
-        '0 12px 32px rgba(108, 43, 217, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.6)',
+      boxShadow: '0 12px 32px rgba(108, 43, 217, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.6)',
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       background: 'linear-gradient(135deg, #faf5ff, #f3e8ff)',
       padding: '4px',
@@ -388,8 +384,7 @@ const RadixDialog = React.forwardRef<
               borderRadius: '16px',
               background: 'linear-gradient(135deg, #ffffff, #faf5ff)',
               border: '2px solid #e5d3ff',
-              boxShadow:
-                '0 20px 50px rgba(108, 43, 217, 0.2), 0 10px 30px rgba(108, 43, 217, 0.1)',
+              boxShadow: '0 20px 50px rgba(108, 43, 217, 0.2), 0 10px 30px rgba(108, 43, 217, 0.1)',
               position: 'fixed',
               top: '50%',
               left: '50%',
@@ -434,11 +429,7 @@ const RadixDialog = React.forwardRef<
               },
               description,
             ),
-          React.createElement(
-            'div',
-            { style: { marginTop: '20px' } },
-            children,
-          ),
+          React.createElement('div', { style: { marginTop: '20px' } }, children),
           React.createElement(
             Dialog.Close,
             { asChild: true },

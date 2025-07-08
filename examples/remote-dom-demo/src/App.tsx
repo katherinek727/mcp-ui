@@ -106,8 +106,7 @@ function App() {
 
   const mockResourceWebComponents = useMemo(
     () => ({
-      mimeType:
-        'application/vnd.mcp-ui.remote-dom+javascript; flavor=webcomponents',
+      mimeType: 'application/vnd.mcp-ui.remote-dom+javascript; flavor=webcomponents',
       text: scriptContent,
     }),
     [scriptContent],

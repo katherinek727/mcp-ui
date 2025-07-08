@@ -130,29 +130,25 @@ const sprintDataFull: SprintDayDataEntry[] = [
 ];
 
 // Process data for the full view (stacked by STATUS, grouped by date)
-const originalProcessedDataFullView: ProcessedChartItemFullView[] =
-  sprintDataFull.map((day) => {
-    let dayTotalToDo = 0;
-    let dayTotalInProgress = 0;
-    let dayTotalBlocked = 0;
-    teamMembers.forEach((member) => {
-      dayTotalToDo += day[member.id]?.toDo || 0;
-      dayTotalInProgress += day[member.id]?.inProgress || 0;
-      dayTotalBlocked += day[member.id]?.blocked || 0;
-    });
-    return {
-      date: day.date,
-      toDo: dayTotalToDo,
-      inProgress: dayTotalInProgress,
-      blocked: dayTotalBlocked,
-    };
+const originalProcessedDataFullView: ProcessedChartItemFullView[] = sprintDataFull.map((day) => {
+  let dayTotalToDo = 0;
+  let dayTotalInProgress = 0;
+  let dayTotalBlocked = 0;
+  teamMembers.forEach((member) => {
+    dayTotalToDo += day[member.id]?.toDo || 0;
+    dayTotalInProgress += day[member.id]?.inProgress || 0;
+    dayTotalBlocked += day[member.id]?.blocked || 0;
   });
+  return {
+    date: day.date,
+    toDo: dayTotalToDo,
+    inProgress: dayTotalInProgress,
+    blocked: dayTotalBlocked,
+  };
+});
 
 // Mapping statuses to team member gradients for the full view bar colors
-const fullViewStatusToGradientMapping: Record<
-  (typeof statusKeys)[number],
-  string
-> = {
+const fullViewStatusToGradientMapping: Record<(typeof statusKeys)[number], string> = {
   toDo: teamMembers[0].gradientId, // Alice's gradient (Teal)
   inProgress: teamMembers[1].gradientId, // Bob's gradient (Blue)
   blocked: teamMembers[2].gradientId, // Charlie's gradient (Red)
@@ -224,12 +220,7 @@ interface CustomTooltipProps {
   isZoomedView: boolean; // Manually passed prop
 }
 
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-  isZoomedView,
-}: CustomTooltipProps) => {
+const CustomTooltip = ({ active, payload, label, isZoomedView }: CustomTooltipProps) => {
   if (active && payload && payload.length && label) {
     const commonStyle = {
       backgroundColor: 'rgba(40, 40, 40, 0.92)',
@@ -291,9 +282,7 @@ const CustomTooltip = ({
                   >
                     {entry.name}:
                   </span>
-                  <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>
-                    {entry.value}
-                  </span>
+                  <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>{entry.value}</span>
                 </li>
               );
             })}
@@ -346,9 +335,7 @@ const CustomTooltip = ({
               <span style={{ color: statusMeta.toDo.color, fontWeight: '500' }}>
                 {statusMeta.toDo.name}:
               </span>
-              <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>
-                {totalDayToDo}
-              </span>
+              <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>{totalDayToDo}</span>
             </li>
             <li
               style={{
@@ -365,19 +352,13 @@ const CustomTooltip = ({
               >
                 {statusMeta.inProgress.name}:
               </span>
-              <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>
-                {totalDayInProgress}
-              </span>
+              <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>{totalDayInProgress}</span>
             </li>
             <li style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span
-                style={{ color: statusMeta.blocked.color, fontWeight: 'bold' }}
-              >
+              <span style={{ color: statusMeta.blocked.color, fontWeight: 'bold' }}>
                 {statusMeta.blocked.name}:
               </span>
-              <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>
-                {totalDayBlocked}
-              </span>
+              <span style={{ fontWeight: 'bold', marginLeft: '10px' }}>{totalDayBlocked}</span>
             </li>
           </ul>
         </div>
@@ -387,16 +368,10 @@ const CustomTooltip = ({
   return null;
 };
 
-const CustomAvatarXAxisTick = (props: {
-  x: number;
-  y: number;
-  payload: { value: string };
-}) => {
+const CustomAvatarXAxisTick = (props: { x: number; y: number; payload: { value: string } }) => {
   const { x, y, payload } = props;
   const teamMemberName = payload.value;
-  const memberInfo = teamMembers.find(
-    (member) => member.name === teamMemberName,
-  );
+  const memberInfo = teamMembers.find((member) => member.name === teamMemberName);
   const [isHovered, setIsHovered] = useState(false); // State for hover effect
 
   const handleAvatarClick = () => {
@@ -548,29 +523,16 @@ export function Graph() {
                   y2="1"
                   key={member.gradientId}
                 >
-                  <stop
-                    offset="5%"
-                    stopColor={member.color}
-                    stopOpacity={0.9}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor={member.color}
-                    stopOpacity={0.6}
-                  />
+                  <stop offset="5%" stopColor={member.color} stopOpacity={0.9} />
+                  <stop offset="95%" stopColor={member.color} stopOpacity={0.6} />
                 </linearGradient>
               ))}
               {/* ClipPath for Avatar */}
               <clipPath id="clipCircle">
-                <circle r="12" cx="12" cy="12" />{' '}
-                {/* Radius is half of avatarSize */}
+                <circle r="12" cx="12" cy="12" /> {/* Radius is half of avatarSize */}
               </clipPath>
             </defs>
-            <CartesianGrid
-              strokeDasharray="4 4"
-              stroke="#E0E0E0"
-              vertical={false}
-            />
+            <CartesianGrid strokeDasharray="4 4" stroke="#E0E0E0" vertical={false} />
             <XAxis
               dataKey={isZoomed ? 'teamMemberName' : 'date'}
               stroke="#78909C"

@@ -29,10 +29,7 @@ describe('<UIResourceRenderer />', () => {
     render(<UIResourceRenderer resource={resource} />);
     expect(screen.getByTestId('html-resource')).toBeInTheDocument();
     expect(RemoteDOMResourceRenderer).not.toHaveBeenCalled();
-    expect(HTMLResourceRenderer).toHaveBeenCalledWith(
-      { resource },
-      {},
-    );
+    expect(HTMLResourceRenderer).toHaveBeenCalledWith({ resource }, {});
   });
 
   it('should render HTMLResourceRenderer for "text/uri-list" mimeType', () => {
@@ -40,10 +37,7 @@ describe('<UIResourceRenderer />', () => {
     render(<UIResourceRenderer resource={resource} />);
     expect(screen.getByTestId('html-resource')).toBeInTheDocument();
     expect(RemoteDOMResourceRenderer).not.toHaveBeenCalled();
-    expect(HTMLResourceRenderer).toHaveBeenCalledWith(
-      { resource },
-      {},
-    );
+    expect(HTMLResourceRenderer).toHaveBeenCalledWith({ resource }, {});
   });
 
   it('should render RemoteDOMResourceRenderer for "remote-dom" mimeType', () => {
@@ -54,7 +48,10 @@ describe('<UIResourceRenderer />', () => {
     render(<UIResourceRenderer resource={resource} />);
     expect(screen.getByTestId('remote-dom-resource')).toBeInTheDocument();
     expect(HTMLResourceRenderer).not.toHaveBeenCalled();
-    expect(RemoteDOMResourceRenderer).toHaveBeenCalledWith({ resource, library: basicComponentLibrary }, {});
+    expect(RemoteDOMResourceRenderer).toHaveBeenCalledWith(
+      { resource, library: basicComponentLibrary },
+      {},
+    );
   });
 
   it('should render an unsupported message for an unknown mimeType', () => {
@@ -67,29 +64,17 @@ describe('<UIResourceRenderer />', () => {
 
   it('should render an error if content type is not supported', () => {
     const resource = { ...baseResource, mimeType: 'text/html' };
-    render(
-      <UIResourceRenderer
-        resource={resource}
-        supportedContentTypes={['remoteDom']}
-      />,
-    );
-    expect(
-      screen.getByText('Unsupported content type: rawHtml.'),
-    ).toBeInTheDocument();
+    render(<UIResourceRenderer resource={resource} supportedContentTypes={['remoteDom']} />);
+    expect(screen.getByText('Unsupported content type: rawHtml.')).toBeInTheDocument();
     expect(HTMLResourceRenderer).not.toHaveBeenCalled();
     expect(RemoteDOMResourceRenderer).not.toHaveBeenCalled();
   });
 
   it('should render the resource if content type is supported', () => {
     const resource = { ...baseResource, mimeType: 'text/html' };
-    render(
-      <UIResourceRenderer
-        resource={resource}
-        supportedContentTypes={['rawHtml']}
-      />,
-    );
+    render(<UIResourceRenderer resource={resource} supportedContentTypes={['rawHtml']} />);
     expect(screen.getByTestId('html-resource')).toBeInTheDocument();
     expect(RemoteDOMResourceRenderer).not.toHaveBeenCalled();
     expect(HTMLResourceRenderer).toHaveBeenCalledWith({ resource }, {});
   });
-}); 
+});

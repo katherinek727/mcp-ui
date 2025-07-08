@@ -5,9 +5,7 @@ export type RemoteDOMRendererProps = {
   receiver: DOMRemoteReceiver;
 };
 
-export const RemoteDOMRenderer: React.FC<RemoteDOMRendererProps> = ({
-  receiver,
-}) => {
+export const RemoteDOMRenderer: React.FC<RemoteDOMRendererProps> = ({ receiver }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,4 +19,4 @@ export const RemoteDOMRenderer: React.FC<RemoteDOMRendererProps> = ({
   }, [receiver]);
 
   return <div ref={containerRef} data-testid="standard-dom-renderer-container" />;
-}; 
+};

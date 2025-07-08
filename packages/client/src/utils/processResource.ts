@@ -7,13 +7,8 @@ type ProcessResourceResult = {
   htmlString?: string;
 };
 
-export function processHTMLResource(
-  resource: Partial<Resource>,
-): ProcessResourceResult {
-  if (
-    resource.mimeType !== 'text/html' &&
-    resource.mimeType !== 'text/uri-list'
-  ) {
+export function processHTMLResource(resource: Partial<Resource>): ProcessResourceResult {
+  if (resource.mimeType !== 'text/html' && resource.mimeType !== 'text/uri-list') {
     return {
       error:
         'Resource must be of type text/html (for HTML content) or text/uri-list (for URL content).',
@@ -41,8 +36,7 @@ export function processHTMLResource(
       }
     } else {
       return {
-        error:
-          'URL resource expects a non-empty text or blob field containing the URL.',
+        error: 'URL resource expects a non-empty text or blob field containing the URL.',
       };
     }
 
@@ -110,7 +104,6 @@ export function processHTMLResource(
   }
 }
 
-
 type ProcessRemoteDOMResourceResult = {
   error?: string;
   code?: string;
@@ -144,4 +137,4 @@ export function processRemoteDOMResource(
   return {
     error: 'Remote DOM resource requires non-empty text or blob content.',
   };
-} 
+}

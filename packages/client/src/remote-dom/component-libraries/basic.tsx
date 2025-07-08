@@ -3,37 +3,45 @@ import { ComponentLibrary } from '../types/componentLibrary';
 
 // Basic components using simple HTML elements
 // With createRemoteComponentRenderer, remote attributes are passed as props directly
-const UIText = React.forwardRef<HTMLSpanElement, { 
-  content?: string; 
-  children?: React.ReactNode 
-}>(({ content, children, ...props }, ref) => {
+const UIText = React.forwardRef<
+  HTMLSpanElement,
+  {
+    content?: string;
+    children?: React.ReactNode;
+  }
+>(({ content, children, ...props }, ref) => {
   return (
-    <span ref={ref} {...props}>{content || children}</span>
+    <span ref={ref} {...props}>
+      {content || children}
+    </span>
   );
 });
 UIText.displayName = 'UIText';
 
-const UIButton = React.forwardRef<HTMLButtonElement, { 
-  label?: string; 
-  onPress?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
-  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
-  children?: React.ReactNode 
-}>(({ label, onPress, onClick, children, ...props }, ref) => {  
+const UIButton = React.forwardRef<
+  HTMLButtonElement,
+  {
+    label?: string;
+    onPress?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+    children?: React.ReactNode;
+  }
+>(({ label, onPress, onClick, children, ...props }, ref) => {
   // Handle both onPress (from remote press event) and onClick (standard React)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {    
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Call onPress if it exists (from remote press event)
     if (onPress) {
       onPress();
     }
-    
+
     // Call onClick if it exists (standard React handler)
     if (onClick) {
       onClick(event);
     }
   };
-  
+
   return (
-    <button 
+    <button
       ref={ref}
       onClick={handleClick}
       style={{
@@ -42,7 +50,7 @@ const UIButton = React.forwardRef<HTMLButtonElement, {
         color: 'white',
         border: 'none',
         borderRadius: '4px',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
       {...props}
     >
@@ -52,43 +60,61 @@ const UIButton = React.forwardRef<HTMLButtonElement, {
 });
 UIButton.displayName = 'UIButton';
 
-const UIStack = React.forwardRef<HTMLDivElement, { 
-  direction?: string;
-  spacing?: string;
-  align?: string;
-  justify?: string;
-  children?: React.ReactNode 
-}>(({ direction = 'vertical', spacing = '8', align = 'stretch', justify = 'flex-start', children, ...props }, ref) => {
-  return (
-    <div 
-      ref={ref}
-      style={{
-        display: 'flex',
-        flexDirection: direction === 'horizontal' ? 'row' : 'column',
-        gap: `${spacing}px`,
-        alignItems: align,
-        justifyContent: justify
-      }}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-});
+const UIStack = React.forwardRef<
+  HTMLDivElement,
+  {
+    direction?: string;
+    spacing?: string;
+    align?: string;
+    justify?: string;
+    children?: React.ReactNode;
+  }
+>(
+  (
+    {
+      direction = 'vertical',
+      spacing = '8',
+      align = 'stretch',
+      justify = 'flex-start',
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <div
+        ref={ref}
+        style={{
+          display: 'flex',
+          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+          gap: `${spacing}px`,
+          alignItems: align,
+          justifyContent: justify,
+        }}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
 UIStack.displayName = 'UIStack';
 
-const UIImage = React.forwardRef<HTMLImageElement, { 
-  src?: string;
-  alt?: string;
-  width?: string;
-  height?: string;
-  children?: React.ReactNode;
-} & Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'children'>>(({ src, alt, width, height, children, ...props }, ref) => {
+const UIImage = React.forwardRef<
+  HTMLImageElement,
+  {
+    src?: string;
+    alt?: string;
+    width?: string;
+    height?: string;
+    children?: React.ReactNode;
+  } & Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'children'>
+>(({ src, alt, width, height, children, ...props }, ref) => {
   // Explicitly ignore children since img elements can't have them
   void children;
-  
+
   return (
-    <img 
+    <img
       ref={ref}
       src={src}
       alt={alt}
@@ -98,7 +124,7 @@ const UIImage = React.forwardRef<HTMLImageElement, {
         maxWidth: '100%',
         height: 'auto',
         borderRadius: '8px',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
       }}
       {...props}
     />
@@ -113,19 +139,19 @@ export const basicComponentLibrary: ComponentLibrary = {
       tagName: 'ui-text',
       component: UIText,
       propMapping: {
-        content: 'content'
+        content: 'content',
       },
-      eventMapping: {}
+      eventMapping: {},
     },
     {
       tagName: 'ui-button',
       component: UIButton,
       propMapping: {
-        label: 'label'
+        label: 'label',
       },
       eventMapping: {
-        press: 'onPress'
-      }
+        press: 'onPress',
+      },
     },
     {
       tagName: 'ui-stack',
@@ -134,9 +160,9 @@ export const basicComponentLibrary: ComponentLibrary = {
         direction: 'direction',
         spacing: 'spacing',
         align: 'align',
-        justify: 'justify'
+        justify: 'justify',
       },
-      eventMapping: {}
+      eventMapping: {},
     },
     {
       tagName: 'ui-image',
@@ -145,9 +171,9 @@ export const basicComponentLibrary: ComponentLibrary = {
         src: 'src',
         alt: 'alt',
         width: 'width',
-        height: 'height'
+        height: 'height',
       },
-      eventMapping: {}
-    }
-  ]
-}; 
+      eventMapping: {},
+    },
+  ],
+};

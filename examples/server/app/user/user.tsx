@@ -22,12 +22,8 @@ export function User({ user }: { user: UserInfo }) {
   const taskCounts = [80, 140, 110, 170, 95, 155];
   const data = months.map((m, i) => ({ month: m, tasks: taskCounts[i] }));
 
-  const avg = Math.round(
-    taskCounts.reduce((sum, v) => sum + v, 0) / taskCounts.length,
-  );
-  const reachPct = Math.round(
-    (taskCounts[taskCounts.length - 1] / Math.max(...taskCounts)) * 100,
-  );
+  const avg = Math.round(taskCounts.reduce((sum, v) => sum + v, 0) / taskCounts.length);
+  const reachPct = Math.round((taskCounts[taskCounts.length - 1] / Math.max(...taskCounts)) * 100);
 
   const handleNudge = () => {
     if (user.id) {
@@ -58,11 +54,7 @@ export function User({ user }: { user: UserInfo }) {
     <div style={styles.card}>
       {/* header */}
       <div style={styles.header}>
-        <img
-          src={user.avatarUrl}
-          alt={`${user.name}’s avatar`}
-          style={styles.avatar}
-        />
+        <img src={user.avatarUrl} alt={`${user.name}’s avatar`} style={styles.avatar} />
         <div>
           <h2 style={styles.name}>{user.name}</h2>
           {user.location && <div style={styles.location}>{user.location}</div>}
@@ -84,10 +76,7 @@ export function User({ user }: { user: UserInfo }) {
         </div>
         <div style={{ height: 120, width: '100%' }}>
           <ResponsiveContainer>
-            <AreaChart
-              data={data}
-              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-            >
+            <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorTasks" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#1976d2" stopOpacity={0.4} />
@@ -161,9 +150,7 @@ export function User({ user }: { user: UserInfo }) {
                   <span
                     style={{
                       ...styles.priorityBadge,
-                      ...(task.priority === 'High'
-                        ? styles.priorityHigh
-                        : styles.priorityMedium),
+                      ...(task.priority === 'High' ? styles.priorityHigh : styles.priorityMedium),
                     }}
                   >
                     {task.priority}
@@ -171,10 +158,7 @@ export function User({ user }: { user: UserInfo }) {
                 </div>
                 <div style={styles.taskTitle}>{task.title}</div>
               </div>
-              <button
-                style={styles.askChatButton}
-                onClick={() => handleAskChat(task.title)}
-              >
+              <button style={styles.askChatButton} onClick={() => handleAskChat(task.title)}>
                 Ask Chat
               </button>
             </div>

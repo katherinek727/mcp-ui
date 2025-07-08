@@ -79,11 +79,7 @@ class UIStack extends HTMLElement {
     div.style.justifyContent = justify;
   }
 
-  attributeChangedCallback(
-    _name: string,
-    _oldValue: string,
-    _newValue: string,
-  ) {
+  attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {
     const div = this.shadowRoot?.querySelector('div');
     if (div) {
       this.updateStyles(div);

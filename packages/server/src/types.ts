@@ -37,12 +37,7 @@ export interface CreateUIResourceOptions {
   delivery: 'text' | 'blob';
 }
 
-export type UIActionType =
-  | 'tool'
-  | 'prompt'
-  | 'link'
-  | 'intent'
-  | 'notification';
+export type UIActionType = 'tool' | 'prompt' | 'link' | 'intent' | 'notification';
 
 export type UIActionResultToolCall = {
   type: 'tool';

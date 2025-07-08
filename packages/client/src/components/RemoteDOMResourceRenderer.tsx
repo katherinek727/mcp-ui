@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useRef, useState } from 'react';
 import { DOMRemoteReceiver } from '@remote-dom/core/receivers';
-import { 
+import {
   createRemoteComponentRenderer,
   RemoteRootRenderer,
   RemoteReceiver,
@@ -40,7 +40,6 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
     return 'webcomponents';
   }, [resource.mimeType]);
 
-
   const componentKey = `${library?.name}-${flavor}`;
 
   const { receiver, components } = useMemo(() => {
@@ -48,24 +47,22 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
       case 'react': {
         const reactReceiver = new RemoteReceiver();
         const componentLibrary = library || basicComponentLibrary;
-        
+
         const componentMap = new Map();
-        
+
         if (componentLibrary) {
           componentLibrary.elements.forEach((elementDef) => {
-            const WrappedComponent = createRemoteComponentRenderer(
-              elementDef.component,
-            );
+            const WrappedComponent = createRemoteComponentRenderer(elementDef.component);
             componentMap.set(elementDef.tagName, WrappedComponent);
           });
         }
-        
+
         return {
           receiver: reactReceiver,
           components: componentMap,
         };
       }
-      case 'webcomponents': 
+      case 'webcomponents':
       default: {
         const domReceiver = new DOMRemoteReceiver();
         return {
@@ -78,19 +75,13 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
 
   useEffect(() => {
     function handleMessage(event: MessageEvent) {
-      if (
-        iframeRef.current &&
-        event.source === iframeRef.current.contentWindow
-      ) {
+      if (iframeRef.current && event.source === iframeRef.current.contentWindow) {
         const uiActionResult = event.data as UIActionResult;
         if (!uiActionResult) {
           return;
         }
         onUIAction?.(uiActionResult)?.catch((err) => {
-          console.error(
-            'Error handling UI action result in RemoteDOMResourceRenderer:',
-            err,
-          );
+          console.error('Error handling UI action result in RemoteDOMResourceRenderer:', err);
         });
       }
     }
@@ -116,7 +107,7 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
 
   const handleIframeLoad = () => {
     const iframe = iframeRef.current;
-    
+
     if (!iframe || threadRef.current) {
       return;
     }
@@ -140,12 +131,10 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
       };
       thread.imports
         .render(options, receiver.connection)
-        .catch((error: Error) =>
-          console.error('Error calling remote render:', error),
-        );
+        .catch((error: Error) => console.error('Error calling remote render:', error));
     }
   };
-  
+
   if (error) {
     return <p className="text-red-500">{error}</p>;
   }
@@ -161,7 +150,7 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
         title="Remote DOM Sandbox"
         onLoad={handleIframeLoad}
       />
-      
+
       {flavor === 'react' && components ? (
         <RemoteRootRenderer receiver={receiver as RemoteReceiver} components={components} />
       ) : (
@@ -169,4 +158,4 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
       )}
     </>
   );
-}; 
+};

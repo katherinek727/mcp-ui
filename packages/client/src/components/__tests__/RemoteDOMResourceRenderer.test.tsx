@@ -18,8 +18,6 @@ vi.mock('../iframe-bundle', () => ({
   IFRAME_SRC_DOC: '<html><body>Mock Iframe Content</body></html>',
 }));
 
-
-
 describe('<RemoteDOMResourceRenderer />', () => {
   const baseResource = {
     uri: 'ui://test-remote-dom',
@@ -37,7 +35,7 @@ describe('<RemoteDOMResourceRenderer />', () => {
     };
 
     render(<RemoteDOMResourceRenderer resource={resource} library={basicComponentLibrary} />);
-    
+
     expect(screen.getByTestId('remote-root-renderer')).toBeInTheDocument();
     expect(screen.queryByTestId('standard-dom-renderer-container')).not.toBeInTheDocument();
   });
@@ -49,7 +47,7 @@ describe('<RemoteDOMResourceRenderer />', () => {
     };
 
     render(<RemoteDOMResourceRenderer resource={resource} />);
-    
+
     expect(screen.getByTestId('standard-dom-renderer-container')).toBeInTheDocument();
     expect(screen.queryByTestId('remote-root-renderer')).not.toBeInTheDocument();
   });
@@ -58,19 +56,19 @@ describe('<RemoteDOMResourceRenderer />', () => {
     const resource = { ...baseResource };
 
     render(<RemoteDOMResourceRenderer resource={resource} />);
-    
+
     expect(screen.getByTestId('standard-dom-renderer-container')).toBeInTheDocument();
     expect(screen.queryByTestId('remote-root-renderer')).not.toBeInTheDocument();
   });
 
   it('should default to standard DOM renderer for an unknown flavor', () => {
     const resource = {
-        ...baseResource,
-        mimeType: 'application/vnd.mcp-ui.remote-dom+javascript; flavor=unknown',
+      ...baseResource,
+      mimeType: 'application/vnd.mcp-ui.remote-dom+javascript; flavor=unknown',
     };
 
     render(<RemoteDOMResourceRenderer resource={resource} />);
-    
+
     expect(screen.getByTestId('standard-dom-renderer-container')).toBeInTheDocument();
     expect(screen.queryByTestId('remote-root-renderer')).not.toBeInTheDocument();
   });
@@ -93,4 +91,4 @@ describe('<RemoteDOMResourceRenderer />', () => {
       expect(componentsMap.has(element.tagName)).toBe(true);
     });
   });
-}); 
+});

@@ -66,9 +66,7 @@ function getSidebar(_sidebar, path) {
       return path.startsWith(ensureStartingSlash(dir2));
     });
   const sidebar = dir ? _sidebar[dir] : [];
-  return Array.isArray(sidebar)
-    ? addBase(sidebar)
-    : addBase(sidebar.items, sidebar.base);
+  return Array.isArray(sidebar) ? addBase(sidebar) : addBase(sidebar.items, sidebar.base);
 }
 function getSidebarGroups(sidebar) {
   const groups = [];
@@ -108,8 +106,7 @@ function useSidebar() {
   });
   const sidebar = ref(_sidebar.value);
   watch(_sidebar, (next, prev) => {
-    if (JSON.stringify(next) !== JSON.stringify(prev))
-      sidebar.value = _sidebar.value;
+    if (JSON.stringify(next) !== JSON.stringify(prev)) sidebar.value = _sidebar.value;
   });
   const hasSidebar = computed(() => {
     return (
@@ -161,9 +158,7 @@ function useSidebar() {
 var ignoreRE = /\b(?:VPBadge|header-anchor|footnote-ref|ignore-header)\b/;
 var resolvedHeaders = [];
 function getHeaders(range) {
-  const headers = [
-    ...document.querySelectorAll('.VPDoc :where(h1,h2,h3,h4,h5,h6)'),
-  ]
+  const headers = [...document.querySelectorAll('.VPDoc :where(h1,h2,h3,h4,h5,h6)')]
     .filter((el) => el.id && el.hasChildNodes())
     .map((el) => {
       const level = Number(el.tagName[1]);
@@ -193,9 +188,7 @@ function resolveHeaders(headers, range) {
     return [];
   }
   const levelsRange =
-    (typeof range === 'object' && !Array.isArray(range)
-      ? range.level
-      : range) || 2;
+    (typeof range === 'object' && !Array.isArray(range) ? range.level : range) || 2;
   const [high, low] =
     typeof levelsRange === 'number'
       ? [levelsRange, levelsRange]
@@ -215,10 +208,7 @@ function buildTree(data, min, max) {
       stack.pop();
       parent = stack[stack.length - 1];
     }
-    if (
-      node.element.classList.contains('ignore-header') ||
-      (parent && 'shouldIgnore' in parent)
-    ) {
+    if (node.element.classList.contains('ignore-header') || (parent && 'shouldIgnore' in parent)) {
       stack.push({ level: node.level, shouldIgnore: true });
       return;
     }
@@ -239,9 +229,7 @@ function useLocalNav() {
     return headers.value.length > 0;
   });
   onContentUpdated(() => {
-    headers.value = getHeaders(
-      frontmatter.value.outline ?? theme2.value.outline,
-    );
+    headers.value = getHeaders(frontmatter.value.outline ?? theme2.value.outline);
   });
   return {
     headers,

@@ -16,5 +16,8 @@ export interface ComponentLibraryRegistry {
   register(library: ComponentLibrary): void;
   get(name: string): ComponentLibrary | undefined;
   getDefault(): ComponentLibrary | undefined;
-  getElementComponent(tagName: string, libraryName?: string): React.ComponentType<Record<string, unknown>> | undefined;
-} 
+  getElementComponent(
+    tagName: string,
+    libraryName?: string,
+  ): React.ComponentType<Record<string, unknown>> | undefined;
+}

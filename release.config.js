@@ -19,8 +19,7 @@ module.exports = {
       {
         // Commits version bump and changelog
         assets: ['package.json', 'pnpm-lock.yaml', 'CHANGELOG.md'], // Adjust if your lockfile is named differently
-        message:
-          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],
   ],

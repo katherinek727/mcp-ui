@@ -1,17 +1,8 @@
 import { RemoteReceiver } from '@remote-dom/core/receivers';
 
-export type UIActionType =
-  | 'tool'
-  | 'prompt'
-  | 'link'
-  | 'intent'
-  | 'notification';
+export type UIActionType = 'tool' | 'prompt' | 'link' | 'intent' | 'notification';
 
-export const ALL_RESOURCE_CONTENT_TYPES = [
-  'rawHtml',
-  'externalUrl',
-  'remoteDom',
-] as const;
+export const ALL_RESOURCE_CONTENT_TYPES = ['rawHtml', 'externalUrl', 'remoteDom'] as const;
 export type ResourceContentType = (typeof ALL_RESOURCE_CONTENT_TYPES)[number];
 
 export type UIActionResultToolCall = {
@@ -63,10 +54,7 @@ export type UIActionResult =
  * The host can call these methods on the thread.
  */
 export interface SandboxAPI {
-  render: (
-    options: RenderOptions,
-    receiver: RemoteReceiver,
-  ) => void | Promise<void>;
+  render: (options: RenderOptions, receiver: RemoteReceiver) => void | Promise<void>;
 }
 
 export interface RemoteElementConfiguration {
