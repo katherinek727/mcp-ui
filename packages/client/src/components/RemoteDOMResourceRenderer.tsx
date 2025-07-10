@@ -8,8 +8,12 @@ import {
 import type { Resource } from '@modelcontextprotocol/sdk/types.js';
 import { IFRAME_SRC_DOC } from '../remote-dom/iframe-bundle';
 import { ThreadIframe } from '@quilted/threads';
-import type { SandboxAPI, RemoteElementConfiguration, UIActionResult } from '../types';
-import type { ComponentLibrary } from '../remote-dom/types/componentLibrary';
+import type {
+  SandboxAPI,
+  RemoteElementConfiguration,
+  UIActionResult,
+  ComponentLibrary,
+} from '../types';
 import { basicComponentLibrary } from '../remote-dom/component-libraries/basic';
 import { RemoteDOMRenderer } from './RemoteDOMRenderer';
 import { processRemoteDOMResource } from '../utils/processResource';
