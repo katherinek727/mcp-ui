@@ -52,7 +52,7 @@ The primary payload returned from the server to the client is the `UIResource`:
 interface UIResource {
   type: 'resource';
   resource: {
-    uri: string;       // ui://component/id
+    uri: string;       // e.g., ui://component/id
     mimeType: 'text/html' | 'text/uri-list' | 'application/vnd.mcp-ui.remote-dom'; // text/html for HTML content, text/uri-list for URL content, application/vnd.mcp-ui.remote-dom for remote-dom content (Javascript)
     text?: string;      // Inline HTML, external URL, or remote-dom script
     blob?: string;      // Base64-encoded HTML, URL, or remote-dom script
@@ -63,7 +63,7 @@ interface UIResource {
 * **`uri`**: Unique identifier for caching and routing
   * `ui://…` — UI resources (rendering method determined by mimeType)
 * **`mimeType`**: `text/html` for HTML content (iframe srcDoc), `text/uri-list` for URL content (iframe src), `application/vnd.mcp-ui.remote-dom` for remote-dom content (Javascript)
-  * **MCP-UI requires a single URL**: While `text/uri-list` format supports multiple URLs, MCP-UI uses only the first valid URL and logs others
+  * **MCP-UI requires a single URL**: While `text/uri-list` format supports multiple URLs, MCP-UI uses only the first valid `http/s` URL and warns if additional URLs are found
 * **`text` vs. `blob`**: Choose `text` for simple strings; use `blob` for larger or encoded content.
 
 ### Resource Renderer
@@ -96,7 +96,7 @@ Rendered using the `<HTMLResourceRenderer />` component, which displays content 
 
 *   **`mimeType`**:
     *   `text/html`: Renders inline HTML content.
-    *   `text/uri-list`: Renders an external URL. MCP-UI uses the first valid URL.
+    *   `text/uri-list`: Renders an external URL. MCP-UI uses the first valid `http/s` URL.
 
 #### Remote DOM (`application/vnd.mcp-ui.remote-dom`)
 
