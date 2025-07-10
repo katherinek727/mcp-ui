@@ -150,7 +150,7 @@ You can use [GitMCP](https://gitmcp.io/idosal/mcp-ui) to give your IDE access to
    });
 
    // remote-dom
-   const resource5 = createUIResource({
+   const remoteDomResource = createUIResource({
      uri: 'ui://remote-component/action-button',
      content: {
        type: 'remoteDom',
