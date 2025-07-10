@@ -13,6 +13,7 @@ import type {
   RemoteElementConfiguration,
   UIActionResult,
   ComponentLibrary,
+  ComponentLibraryElement,
 } from '../types';
 import { basicComponentLibrary } from '../remote-dom/component-libraries/basic';
 import { RemoteDOMRenderer } from './RemoteDOMRenderer';
@@ -55,7 +56,7 @@ export const RemoteDOMResourceRenderer: React.FC<RemoteDOMResourceProps> = ({
         const componentMap = new Map();
 
         if (componentLibrary) {
-          componentLibrary.elements.forEach((elementDef) => {
+          componentLibrary.elements.forEach((elementDef: ComponentLibraryElement) => {
             const WrappedComponent = createRemoteComponentRenderer(elementDef.component);
             componentMap.set(elementDef.tagName, WrappedComponent);
           });
