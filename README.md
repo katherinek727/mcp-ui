@@ -71,7 +71,7 @@ interface UIResource {
 The UI Resource is rendered in the `<UIResourceRenderer />` component. It automatically detects the resource type and renders the appropriate component.
 
 It accepts the following props:
-- **`resource`**: The resource object from an MCP response. Should include `uri`, `mimeType`, and content (`text`, `blob`, or `content`)
+- **`resource`**: The resource object from an MCP Tool response. It must include `uri`, `mimeType`, and content (`text`, `blob`)
 - **`onUIAction`**: Optional callback for handling UI actions from the resource:
   ```typescript
   { type: 'tool', payload: { toolName: string, params: Record<string, unknown> } } |
@@ -100,13 +100,13 @@ Rendered using the `<HTMLResourceRenderer />` component, which displays content 
 
 #### Remote DOM (`application/vnd.mcp-ui.remote-dom`)
 
-Rendered using the `<RemoteDOMResourceRenderer />` component, which uses Shopify's [`remote-dom`](https://github.com/Shopify/remote-dom). The server responds with a script that describes the UI and events. On the host, the script is securely rendered in a sandboxed iframe, and the UI changes are communicated to the host in JSON, where they're rendered using the host's component library. This is more flexible than iframes and allows for UIs that match the host's look-and-feel.
+Rendered using the internal `<RemoteDOMResourceRenderer />` component, which utilizes Shopify's [`remote-dom`](https://github.com/Shopify/remote-dom). The server responds with a script that describes the UI and events. On the host, the script is securely rendered in a sandboxed iframe, and the UI changes are communicated to the host in JSON, where they're rendered using the host's component library. This is more flexible than iframes and allows for UIs that match the host's look-and-feel.
 
 * **`mimeType`**: `application/vnd.mcp-ui.remote-dom; flavor={react | webcomponents}`
 
 ### UI Action
 
-UI snippets must be able to interact with the agent. In `mcp-ui`, this is done by hooking into events sent from the UI snippet and reacting to them in the host. For example, an HTML may trigger a tool call when a button is clicked by sending an event which will be caught handled by the client.
+UI snippets must be able to interact with the agent. In `mcp-ui`, this is done by hooking into events sent from the UI snippet and reacting to them in the host (see `onUIAction` prop). For example, an HTML may trigger a tool call when a button is clicked by sending an event which will be caught handled by the client.
 
 ## 🏗️ Installation
 
@@ -184,7 +184,6 @@ You can use [GitMCP](https://gitmcp.io/idosal/mcp-ui) to give your IDE access to
            resource={mcpResource.resource}
            onUIAction={(result) => {
              console.log('Action:', result);
-             return { status: 'ok' };
            }}
          />
        );
