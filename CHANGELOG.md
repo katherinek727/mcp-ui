@@ -1,3 +1,10 @@
+## [4.1.4](https://github.com/idosal/mcp-ui/compare/v4.1.3...v4.1.4) (2025-07-16)
+
+
+### Bug Fixes
+
+* pass ref explicitly using iframeProps ([#33](https://github.com/idosal/mcp-ui/issues/33)) ([d01b5d1](https://github.com/idosal/mcp-ui/commit/d01b5d1e4cdaedc436ba2fa8984d866d93d59087))
+
 ## [4.1.3](https://github.com/idosal/mcp-ui/compare/v4.1.2...v4.1.3) (2025-07-15)
 
 
