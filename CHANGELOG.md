@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/idosal/mcp-ui/compare/v4.1.4...v5.0.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* rename delivery -> encoding and flavor -> framework ([#36](https://github.com/idosal/mcp-ui/issues/36)) ([9a509ed](https://github.com/idosal/mcp-ui/commit/9a509ed80d051b0a8042b36958b401a0a7c1e138))
+
+
+### BREAKING CHANGES
+
+* The existing naming is ambiguous. Renaming delivery to encoding and flavor to framework should clarify the intent.
+
 ## [4.1.4](https://github.com/idosal/mcp-ui/compare/v4.1.3...v4.1.4) (2025-07-16)
 
 
