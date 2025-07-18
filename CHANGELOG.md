@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/idosal/mcp-ui/compare/v5.1.0...v5.1.1) (2025-07-18)
+
+
+### Bug Fixes
+
+* add a bridge to pass messages in and out of the proxy ([#38](https://github.com/idosal/mcp-ui/issues/38)) ([30ccac0](https://github.com/idosal/mcp-ui/commit/30ccac0706ad8e02ebcd8960924ed1d58ddedf85))
+
 # [5.1.0](https://github.com/idosal/mcp-ui/compare/v5.0.0...v5.1.0) (2025-07-18)
 
 
