@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/idosal/mcp-ui/compare/v5.0.0...v5.1.0) (2025-07-18)
+
+
+### Features
+
+* add proxy option to externalUrl ([#37](https://github.com/idosal/mcp-ui/issues/37)) ([7b95cd0](https://github.com/idosal/mcp-ui/commit/7b95cd0b3873fc1cde28748ec463e81c6ff1c494))
+
 # [5.0.0](https://github.com/idosal/mcp-ui/compare/v4.1.4...v5.0.0) (2025-07-17)
 
 
