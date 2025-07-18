@@ -47,6 +47,7 @@ interface UIResourceRendererProps {
   - **`style`**: Optional custom styles for iframe-based resources
   - **`proxy`**: Optional. A URL to a static "proxy" script for rendering external URLs. See [Using a Proxy for External URLs](./using-a-proxy.md) for details.
   - **`iframeProps`**: Optional props passed to iframe elements (for HTML/URL resources)
+    - **`ref`**: Optional React ref to access the underlying iframe element
 - **`remoteDomProps`**: Optional props for the `<RemoteDOMResourceRenderer>`
   - **`library`**: Optional component library for Remote DOM resources (defaults to `basicComponentLibrary`)
   - **`remoteElements`**: Optional remote element definitions for Remote DOM resources. REQUIRED for Remote DOM snippets.
@@ -139,17 +140,54 @@ const customLibrary: ComponentLibrary = {
 ```tsx
 <UIResourceRenderer
   resource={mcpResource.resource}
-  style={{ 
-    border: '2px solid #007acc',
-    borderRadius: '8px',
-    minHeight: '400px'
-  }}
-  iframeProps={{
-    title: 'Custom MCP Resource',
-    className: 'mcp-resource-frame'
+  htmlProps={{
+    style: { 
+      border: '2px solid #007acc',
+      borderRadius: '8px',
+      minHeight: '400px'
+    },
+    iframeProps: {
+      title: 'Custom MCP Resource',
+      className: 'mcp-resource-frame'
+    }
   }}
   onUIAction={handleUIAction}
 />
+```
+
+### Accessing the Iframe Element
+
+You can pass a ref through `iframeProps` to access the underlying iframe element:
+
+```tsx
+import React, { useRef } from 'react';
+
+function MyComponent({ mcpResource }) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const handleFocus = () => {
+    // Access the iframe element directly
+    if (iframeRef.current) {
+      iframeRef.current.focus();
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={handleFocus}>Focus Iframe</button>
+      <UIResourceRenderer
+        resource={mcpResource.resource}
+        htmlProps={{
+          iframeProps: {
+            ref: iframeRef,
+            title: 'MCP Resource'
+          }
+        }}
+        onUIAction={handleUIAction}
+      />
+    </div>
+  );
+}
 ```
 
 ## Resource Type Detection
