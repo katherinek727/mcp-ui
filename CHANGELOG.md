@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/idosal/mcp-ui/compare/v5.1.2...v5.2.0) (2025-07-18)
+
+
+### Features
+
+* support generic messages response ([#35](https://github.com/idosal/mcp-ui/issues/35)) ([10b407b](https://github.com/idosal/mcp-ui/commit/10b407b279b3ee9608ef077445f4d714f88343c5))
+
 ## [5.1.2](https://github.com/idosal/mcp-ui/compare/v5.1.1...v5.1.2) (2025-07-18)
 
 
