@@ -1,4 +1,4 @@
-# Using a Proxy for External URLs
+# Using a Proxy Script for External URLs
 
 When rendering external URLs (`text/uri-list`), you may need to use a "proxy" to comply with your host's restrictive Content Security Policy (CSP). The proxy domain must be whitelisted as a `frame-src`. The `proxy` prop on `<UIResourceRenderer>` allows you to specify a URL for a proxy script that will render the external content in a nested iframe.
 
