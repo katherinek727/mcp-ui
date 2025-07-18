@@ -115,18 +115,22 @@ export default defineConfig({
                   link: '/guide/client/resource-renderer',
                 },
                 {
+                  text: 'Custom Component Libraries',
+                  link: '/guide/client/custom-component-libraries',
+                },
+                {
                   text: 'Using a Proxy',
                   link: '/guide/client/using-a-proxy',
                 },
+                {
+                  text: 'HTMLResourceRenderer',
+                  link: '/guide/client/html-resource',
+                },
+                {
+                  text: 'RemoteDOMResourceRenderer',
+                  link: '/guide/client/remote-dom-resource',
+                },
               ],
-            },
-            {
-              text: 'HTMLResourceRenderer',
-              link: '/guide/client/html-resource',
-            },
-            {
-              text: 'RemoteDOMResourceRenderer',
-              link: '/guide/client/remote-dom-resource',
             },
             { text: 'Usage & Examples', link: '/guide/client/usage-examples' },
           ],

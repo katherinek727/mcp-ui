@@ -52,6 +52,8 @@ interface UIResourceRendererProps {
   - **`library`**: Optional component library for Remote DOM resources (defaults to `basicComponentLibrary`)
   - **`remoteElements`**: Optional remote element definitions for Remote DOM resources. REQUIRED for Remote DOM snippets.
 
+See [Custom Component Libraries](./custom-component-libraries.md) for a detailed guide on how to create and use your own libraries for `remoteDom` resources.
+
 ## Basic Usage
 
 ```tsx
@@ -110,27 +112,6 @@ function App({ mcpResource }) {
 <UIResourceRenderer
   resource={mcpResource.resource}
   supportedContentTypes={['rawHtml']}
-  onUIAction={handleUIAction}
-/>
-```
-
-### Custom Component Library (for Remote DOM)
-
-```tsx
-import { ComponentLibrary } from '@mcp-ui/client';
-import { MyButton, MyCard } from './MyComponents';
-
-const customLibrary: ComponentLibrary = {
-  name: 'custom',
-  elements: [
-    { tagName: 'my-button', component: MyButton },
-    { tagName: 'my-card', component: MyCard },
-  ],
-};
-
-<UIResourceRenderer
-  resource={mcpResource.resource}
-  library={customLibrary}
   onUIAction={handleUIAction}
 />
 ```
@@ -228,6 +209,31 @@ function App({ mcpResource }) {
 When unsupported content types are encountered, `UIResourceRenderer` will display appropriate error messages:
 - `"Unsupported content type: {type}."`
 - `"Unsupported resource type."`
+
+### Custom Component Library (for Remote DOM resources)
+
+You can provide a custom component library to render Remote DOM resources with your own components. For a detailed guide, see [Custom Component Libraries](./custom-component-libraries.md).
+
+```tsx
+import { ComponentLibrary } from '@mcp-ui/client';
+import { MyButton, MyCard } from './MyComponents';
+
+const customLibrary: ComponentLibrary = {
+  name: 'custom',
+  elements: [
+    { tagName: 'my-button', component: MyButton },
+    { tagName: 'my-card', component: MyCard },
+  ],
+};
+
+<UIResourceRenderer
+  resource={mcpResource.resource}
+  remoteDomProps={{
+    library: customLibrary,
+  }}
+  onUIAction={handleUIAction}
+/>
+```
 
 ## Security Considerations
 
