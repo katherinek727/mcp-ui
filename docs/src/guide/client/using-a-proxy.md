@@ -26,6 +26,8 @@ import { UIResourceRenderer } from '@mcp-ui/client';
 
 Please verify that the host whitelists `https://proxy.mcpui.dev` as a `frame-src` in the CSP.
 
+You can find a complete example for a site with restrictive CSP that uses the hosted proxy at `examples/external-url-demo`.
+
 ## Self-Hosting the Proxy Script
 
 If you prefer to host your own proxy script, you can create a simple HTML file with embedded JavaScript. This is a useful alternative to the hosted version when you want more control or a custom domain.
