@@ -159,7 +159,20 @@ To build specifically this package from the monorepo root:
 pnpm build -w @mcp-ui/server
 ```
 
-See the [Server SDK Usage & Examples](./server/usage-examples.md) page for practical examples.
+Explore the server-side SDK's practical examples for creating UI resources:
+
+<div class="language-code-blocks">
+<div class="language-typescript">
+
+[View TypeScript Usage & Examples](./server/typescript/usage-examples.md)
+
+</div>
+<div class="language-ruby">
+
+[View Ruby Usage & Examples](./server/ruby/usage-examples.md)
+
+</div>
+</div>
 
 To build specifically this package from the monorepo root:
 
@@ -202,7 +215,11 @@ All resource types are handled automatically by `<UIResourceRenderer />`.
 
 ## Next Steps
 
-- [Server SDK Usage & Examples](./server/usage-examples.md) - Learn how to create resources
-- [Client SDK Usage & Examples](./client/usage-examples.md) - Learn how to render resources
-- [Protocol Details](./protocol-details.md) - Understand the underlying protocol
-- [UIResourceRenderer Component](./client/resource-renderer.md) - Comprehensive component guide
+- **Server SDKs**: Learn how to create resources with our server-side packages.
+  - [TypeScript SDK Usage & Examples](./server/typescript/usage-examples.md)
+  - [Ruby SDK Usage & Examples](./server/ruby/usage-examples.md)
+- **Client SDK**: Learn how to render resources.
+  - [Client SDK Usage & Examples](./client/usage-examples.md)
+- **Protocol & Components**:
+  - [Protocol Details](./protocol-details.md)
+  - [UIResourceRenderer Component](./client/resource-renderer.md)
