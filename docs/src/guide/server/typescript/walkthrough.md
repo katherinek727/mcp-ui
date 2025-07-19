@@ -133,10 +133,12 @@ npx ts-node server.ts
 
 To test your new endpoint, you can use the [`ui-inspector`](https://github.com/idosal/ui-inspector):
 
-1. Go to the **[ui-inspector website](https://idosal.github.io/ui-inspector/)**.
-2. Enter your server's MCP endpoint URL: `http://localhost:3000/mcp`.
-3. Click "Connect".
+1. Go to the [ui-inspector repo](https://idosal.github.io/ui-inspector/) and run locally.
+2. Open the local client in a browser (usually `http://localhost:6274`)
+3. Change the Transport Type to "Streamable HTTP".
+4. Enter your server's MCP endpoint URL: `http://localhost:3000/mcp`.
+5. Click "Connect".
 
-The inspector will show the `greet` tool. When you call it, the UI resource will be rendered in the inspector's "UI" tab.
+The inspector will show tools for the different content types. When you call them, the UI resource will be rendered in the inspector's Tool Results.
 
 You've now successfully integrated `mcp-ui` into your TypeScript server! You can now create more complex tools that return different types of UI resources. 
