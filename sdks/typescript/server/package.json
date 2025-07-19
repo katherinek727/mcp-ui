@@ -26,6 +26,7 @@
     "vitest": "^1.0.0"
   },
   "scripts": {
+    "prepublishOnly": "pnpm run build",
     "dev": "vite",
     "build": "vite build",
     "test": "vitest run",
