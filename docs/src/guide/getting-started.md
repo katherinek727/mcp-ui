@@ -4,10 +4,15 @@ This guide will help you get started with the MCP-UI SDK, which provides tools f
 
 ## Prerequisites
 
-- Node.js (v22.x recommended)
-- pnpm (v9 or later recommended)
+- Node.js (v22.x recommended for the Typescript SDK)
+- pnpm (v9 or later recommended for the Typescript SDK)
+- Ruby (v3.x recommended for the Ruby SDK)
 
 ## Installation
+
+This project is a monorepo that includes the server and client SDKs.
+
+### For Typescript SDKs (`@mcp-ui/server` and `@mcp-ui/client`)
 
 1.  **Clone the Monorepo**:
 
@@ -22,6 +27,26 @@ This guide will help you get started with the MCP-UI SDK, which provides tools f
     pnpm install
     ```
     This command installs dependencies for all packages (`shared`, `client`, `server`, `docs`) and links them together using pnpm.
+
+### For Ruby SDK (`mcp_ui_server`)
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'mcp_ui_server'
+```
+
+And then execute:
+
+```bash
+$ bundle install
+```
+
+Or install it yourself as:
+
+```bash
+$ gem install mcp_ui_server
+```
 
 ## Building Packages
 
@@ -51,9 +76,9 @@ pnpm run coverage
 
 Once built, you can typically import from the packages as you would with any other npm module, assuming your project is set up to resolve them.
 
-### In a Node.js Project (Server-Side Example)
-
-```typescript
+### In a Server-Side Project
+::: code-group
+```typescript [TypeScript]
 // main.ts (your server-side application)
 import { createUIResource } from '@mcp-ui/server';
 
@@ -65,9 +90,23 @@ const resourceBlock = createUIResource({
   encoding: 'text',
 });
 
-
 // Send this resourceBlock as part of your MCP response...
 ```
+```ruby [Ruby]
+# main.rb (your server-side application)
+require 'mcp_ui_server'
+
+my_html_payload = "<h1>Hello from Server!</h1><p>Timestamp: #{Time.now.iso8601}</p>"
+
+resource_block = McpUiServer.create_ui_resource(
+  uri: 'ui://server-generated/item1',
+  content: { type: :raw_html, htmlString: my_html_payload },
+  encoding: :text
+)
+
+# Send this resource_block as part of your MCP response...
+```
+:::
 
 ### In a React Project (Client-Side Example)
 
@@ -156,27 +195,6 @@ Next, explore the specific guides for each SDK package to learn more about their
 To build specifically this package from the monorepo root:
 
 ```bash
-pnpm build -w @mcp-ui/server
-```
-
-Explore the server-side SDK's practical examples for creating UI resources:
-
-<div class="language-code-blocks">
-<div class="language-typescript">
-
-[View TypeScript Usage & Examples](./server/typescript/usage-examples.md)
-
-</div>
-<div class="language-ruby">
-
-[View Ruby Usage & Examples](./server/ruby/usage-examples.md)
-
-</div>
-</div>
-
-To build specifically this package from the monorepo root:
-
-```bash
 pnpm build -w @mcp-ui/client
 ```
 
@@ -184,7 +202,9 @@ See the following pages for more details:
 
 ## Basic Setup
 
-For MCP servers, ensure you have `@mcp-ui/server` available in your Node.js project. If you're working outside this monorepo, you would typically install them.
+For MCP servers, you can use one of the server-side SDKs:
+- **`@mcp-ui/server`** for Node.js projects
+- **`mcp_ui_server`** for Ruby projects
 
 For MCP clients, ensure `@mcp-ui/client` and its peer dependencies (`react` and potentially `@modelcontextprotocol/sdk`) are installed in your React project.
 
@@ -194,11 +214,14 @@ npm i @mcp-ui/client
 
 ## Key Components
 
-### Server Side (`@mcp-ui/server`)
-- **`createUIResource`**: Creates UI resource objects for MCP tool responses
+### Server-Side SDKs
+- **`@mcp-ui/server` (TypeScript)**:
+  - **`createUIResource`**: Creates UI resource objects for MCP tool responses
+- **`mcp_ui_server` (Ruby)**:
+  - **`McpUiServer.create_ui_resource`**: Creates UI resource objects for MCP tool responses
 - Handles HTML content, external URLs, Remote DOM JS, and encoding options
 
-### Client Side (`@mcp-ui/client`)
+### Client-Side (`@mcp-ui/client`)
 - **`<UIResourceRenderer />`**: Main component for rendering all types of MCP-UI resources
 - **`<HTMLResourceRenderer />`**: Internal component for HTML resources
 - **`<RemoteDOMResourceRenderer />`**: Internal component for Remote DOM resources
@@ -223,3 +246,4 @@ All resource types are handled automatically by `<UIResourceRenderer />`.
 - **Protocol & Components**:
   - [Protocol Details](./protocol-details.md)
   - [UIResourceRenderer Component](./client/resource-renderer.md)
+
