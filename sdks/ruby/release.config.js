@@ -1,5 +1,6 @@
 module.exports = {
   branches: ['main'],
+  repositoryUrl: 'https://github.com/idosal/mcp-ui',
   tagFormat: 'ruby-server-sdk/v${version}',
   plugins: [
     '@semantic-release/commit-analyzer',
