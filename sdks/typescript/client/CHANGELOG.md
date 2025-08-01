@@ -1,3 +1,10 @@
+# [5.4.0](https://github.com/idosal/mcp-ui/compare/v5.3.1...v5.4.0) (2025-08-01)
+
+
+### Features
+
+* send render data to the iframe ([#51](https://github.com/idosal/mcp-ui/issues/51)) ([d38cfc7](https://github.com/idosal/mcp-ui/commit/d38cfc7925061c1ae1911bdee408033c8e9f283d))
+
 ## [5.3.1](https://github.com/idosal/mcp-ui/compare/v5.3.0...v5.3.1) (2025-07-19)
 
 
