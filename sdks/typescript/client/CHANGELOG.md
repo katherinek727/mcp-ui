@@ -1,3 +1,10 @@
+# [5.5.0](https://github.com/idosal/mcp-ui/compare/v5.4.0...v5.5.0) (2025-08-02)
+
+
+### Features
+
+* auto resize with the autoResizeIframe prop ([#56](https://github.com/idosal/mcp-ui/issues/56)) ([76c867a](https://github.com/idosal/mcp-ui/commit/76c867a569b72aed892290aa84e1194ab8eb79ce))
+
 # [5.4.0](https://github.com/idosal/mcp-ui/compare/v5.3.1...v5.4.0) (2025-08-01)
 
 
