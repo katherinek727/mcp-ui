@@ -1,3 +1,10 @@
+# [5.6.0](https://github.com/idosal/mcp-ui/compare/v5.5.0...v5.6.0) (2025-08-03)
+
+
+### Features
+
+* add UIResourceRenderer Web Component ([#58](https://github.com/idosal/mcp-ui/issues/58)) ([ec8f299](https://github.com/idosal/mcp-ui/commit/ec8f2994ecf36774e6ad5191654ba22946d0ee49))
+
 # [5.5.0](https://github.com/idosal/mcp-ui/compare/v5.4.0...v5.5.0) (2025-08-02)
 
 
