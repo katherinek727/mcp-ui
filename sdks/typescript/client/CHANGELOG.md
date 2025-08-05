@@ -1,3 +1,10 @@
+## [5.6.2](https://github.com/idosal/mcp-ui/compare/v5.6.1...v5.6.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* bump client version ([75c9236](https://github.com/idosal/mcp-ui/commit/75c923689654b4443ad1093fafc0bad16902e4cc))
+
 ## [5.6.1](https://github.com/idosal/mcp-ui/compare/v5.6.0...v5.6.1) (2025-08-05)
 
 
