@@ -1,3 +1,10 @@
+## [5.6.1](https://github.com/idosal/mcp-ui/compare/v5.6.0...v5.6.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* wc dist overwrite ([#63](https://github.com/idosal/mcp-ui/issues/63)) ([9e46c56](https://github.com/idosal/mcp-ui/commit/9e46c56c7a8908410fad6d08a5d845139e93f80f))
+
 # [5.6.0](https://github.com/idosal/mcp-ui/compare/v5.5.0...v5.6.0) (2025-08-03)
 
 
